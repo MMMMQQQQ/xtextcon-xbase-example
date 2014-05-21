@@ -39,6 +39,7 @@ public class RulesParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
 					put(grammarAccess.getRuleAccess().getAlternatives_1(), "rule__Rule__Alternatives_1");
+					put(grammarAccess.getXLiteralAccess().getAlternatives(), "rule__XLiteral__Alternatives");
 					put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 					put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 					put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -57,7 +58,6 @@ public class RulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXMemberFeatureCallAccess().getAlternatives_1_1_0_0_1(), "rule__XMemberFeatureCall__Alternatives_1_1_0_0_1");
 					put(grammarAccess.getXMemberFeatureCallAccess().getAlternatives_1_1_3_1(), "rule__XMemberFeatureCall__Alternatives_1_1_3_1");
 					put(grammarAccess.getXPrimaryExpressionAccess().getAlternatives(), "rule__XPrimaryExpression__Alternatives");
-					put(grammarAccess.getXLiteralAccess().getAlternatives(), "rule__XLiteral__Alternatives");
 					put(grammarAccess.getXCollectionLiteralAccess().getAlternatives(), "rule__XCollectionLiteral__Alternatives");
 					put(grammarAccess.getXSwitchExpressionAccess().getAlternatives_2(), "rule__XSwitchExpression__Alternatives_2");
 					put(grammarAccess.getXCasePartAccess().getAlternatives_3(), "rule__XCasePart__Alternatives_3");
@@ -82,7 +82,9 @@ public class RulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeviceAccess().getGroup(), "rule__Device__Group__0");
 					put(grammarAccess.getDeviceAccess().getGroup_4(), "rule__Device__Group_4__0");
 					put(grammarAccess.getTimeLiteralAccess().getGroup(), "rule__TimeLiteral__Group__0");
-					put(grammarAccess.getTimeLiteralAccess().getGroup_3(), "rule__TimeLiteral__Group_3__0");
+					put(grammarAccess.getTimeLiteralAccess().getGroup_0(), "rule__TimeLiteral__Group_0__0");
+					put(grammarAccess.getTimeLiteralAccess().getGroup_0_0(), "rule__TimeLiteral__Group_0_0__0");
+					put(grammarAccess.getTimeLiteralAccess().getGroup_2(), "rule__TimeLiteral__Group_2__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1_1(), "rule__XAssignment__Group_1_1__0");
@@ -262,9 +264,9 @@ public class RulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeviceAccess().getStatesAssignment_3(), "rule__Device__StatesAssignment_3");
 					put(grammarAccess.getDeviceAccess().getStatesAssignment_4_1(), "rule__Device__StatesAssignment_4_1");
 					put(grammarAccess.getStateAccess().getNameAssignment(), "rule__State__NameAssignment");
-					put(grammarAccess.getTimeLiteralAccess().getHourAssignment_0(), "rule__TimeLiteral__HourAssignment_0");
-					put(grammarAccess.getTimeLiteralAccess().getMinAssignment_2(), "rule__TimeLiteral__MinAssignment_2");
-					put(grammarAccess.getTimeLiteralAccess().getSecAssignment_3_1(), "rule__TimeLiteral__SecAssignment_3_1");
+					put(grammarAccess.getTimeLiteralAccess().getHourAssignment_0_0_0(), "rule__TimeLiteral__HourAssignment_0_0_0");
+					put(grammarAccess.getTimeLiteralAccess().getMinAssignment_1(), "rule__TimeLiteral__MinAssignment_1");
+					put(grammarAccess.getTimeLiteralAccess().getSecAssignment_2_1(), "rule__TimeLiteral__SecAssignment_2_1");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

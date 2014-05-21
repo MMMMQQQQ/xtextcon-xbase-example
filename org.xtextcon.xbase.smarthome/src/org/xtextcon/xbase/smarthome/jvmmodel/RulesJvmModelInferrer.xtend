@@ -53,7 +53,6 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 					initializeMain(model)
 				])
 		}
-		
 	}
 	
 	def initializeTimeEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
@@ -86,12 +85,8 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 		
 		for (rule : rules) {
-			type.members += rule.toMethod(rule.timeMethod, model.newTypeRef(Calendar)) [
-				body = '''
-					«Calendar» cal = «Calendar».getInstance();
-					cal.set(0, 0, 0, «rule.time.hour», «rule.time.min», «rule.time.sec»);
-					return cal;
-				'''
+			type.members += rule.toMethod(rule.timeMethod, rule.time.inferredType) [
+				body = rule.time
 			]
 		}
 	}
@@ -116,7 +111,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	def initializeActions(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
-		for (rule : rules) {
+		for (rule : rules.filter[then != null]) {
 			type.members += rule.toMethod(rule.thenMethod, rule.then.inferredType) [
 				body = rule.then
 			]

@@ -383,6 +383,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
     // Add supertypes to classes
     ruleEClass.getESuperTypes().add(this.getDeclaration());
     deviceEClass.getESuperTypes().add(this.getDeclaration());
+    timeLiteralEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

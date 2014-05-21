@@ -7,7 +7,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.xtext.xbase.impl.XExpressionImpl;
 
 import org.xtextcon.xbase.smarthome.rules.RulesPackage;
 import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
@@ -27,7 +28,7 @@ import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
  *
  * @generated
  */
-public class TimeLiteralImpl extends MinimalEObjectImpl.Container implements TimeLiteral
+public class TimeLiteralImpl extends XExpressionImpl implements TimeLiteral
 {
   /**
    * The default value of the '{@link #getHour() <em>Hour</em>}' attribute.

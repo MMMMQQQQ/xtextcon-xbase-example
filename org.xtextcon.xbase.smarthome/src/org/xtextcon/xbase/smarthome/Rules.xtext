@@ -1,6 +1,8 @@
 grammar org.xtextcon.xbase.smarthome.Rules with org.eclipse.xtext.xbase.Xbase
 
 generate rules "http://www.xtextcon.org/xbase/smarthome/Rules"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
 
 Model:
 	declarations+=Declaration*;
@@ -23,6 +25,17 @@ State:
 	name=ID
 ;
 
+XLiteral returns xbase::XExpression:
+	TimeLiteral |
+	XCollectionLiteral |
+	XClosure |
+	XBooleanLiteral |
+	XNumberLiteral |
+	XNullLiteral |
+	XStringLiteral |
+	XTypeLiteral
+;
+
 TimeLiteral:
-	hour=INT ':' min=INT (':' sec=INT)?
+	=>(hour=INT ':') min=INT (=>':' sec=INT)?
 ;

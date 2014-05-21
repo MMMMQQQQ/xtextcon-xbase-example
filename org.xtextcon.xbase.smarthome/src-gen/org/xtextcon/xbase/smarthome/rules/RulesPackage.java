@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.xtext.xbase.XbasePackage;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -231,7 +233,7 @@ public interface RulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL__HOUR = 0;
+  int TIME_LITERAL__HOUR = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -240,7 +242,7 @@ public interface RulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL__MIN = 1;
+  int TIME_LITERAL__MIN = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Sec</b></em>' attribute.
@@ -249,7 +251,7 @@ public interface RulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL__SEC = 2;
+  int TIME_LITERAL__SEC = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Time Literal</em>' class.
@@ -258,7 +260,7 @@ public interface RulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL_FEATURE_COUNT = 3;
+  int TIME_LITERAL_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 3;
 
 
   /**

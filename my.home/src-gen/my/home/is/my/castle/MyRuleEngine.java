@@ -28,15 +28,15 @@ public class MyRuleEngine implements TimeDependent {
   }
   
   public Calendar time_5() {
-    Calendar cal = Calendar.getInstance();
-    cal.set(0, 0, 0, 20, 15, 0);
-    return cal;
+    final Calendar _calendar = Calendar.getInstance();
+    _calendar.set(0, 0, 0, 20, 15, 0);
+    return _calendar;
   }
   
   public Calendar time_6() {
-    Calendar cal = Calendar.getInstance();
-    cal.set(0, 0, 0, 20, 0, 0);
-    return cal;
+    final Calendar _calendar = Calendar.getInstance();
+    _calendar.set(0, 0, 0, 20, 0, 0);
+    return _calendar;
   }
   
   protected void trigger(final Enum<?> event) {

@@ -175,52 +175,106 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
 
+	public class XLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "XLiteral");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cTimeLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cXCollectionLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cXClosureParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cXBooleanLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cXNumberLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cXNullLiteralParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cXStringLiteralParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cXTypeLiteralParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		
+		//XLiteral returns xbase::XExpression:
+		//	TimeLiteral | XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral |
+		//	XTypeLiteral;
+		public ParserRule getRule() { return rule; }
+
+		//TimeLiteral | XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral |
+		//XTypeLiteral
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//TimeLiteral
+		public RuleCall getTimeLiteralParserRuleCall_0() { return cTimeLiteralParserRuleCall_0; }
+
+		//XCollectionLiteral
+		public RuleCall getXCollectionLiteralParserRuleCall_1() { return cXCollectionLiteralParserRuleCall_1; }
+
+		//XClosure
+		public RuleCall getXClosureParserRuleCall_2() { return cXClosureParserRuleCall_2; }
+
+		//XBooleanLiteral
+		public RuleCall getXBooleanLiteralParserRuleCall_3() { return cXBooleanLiteralParserRuleCall_3; }
+
+		//XNumberLiteral
+		public RuleCall getXNumberLiteralParserRuleCall_4() { return cXNumberLiteralParserRuleCall_4; }
+
+		//XNullLiteral
+		public RuleCall getXNullLiteralParserRuleCall_5() { return cXNullLiteralParserRuleCall_5; }
+
+		//XStringLiteral
+		public RuleCall getXStringLiteralParserRuleCall_6() { return cXStringLiteralParserRuleCall_6; }
+
+		//XTypeLiteral
+		public RuleCall getXTypeLiteralParserRuleCall_7() { return cXTypeLiteralParserRuleCall_7; }
+	}
+
 	public class TimeLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TimeLiteral");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cHourAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cHourINTTerminalRuleCall_0_0 = (RuleCall)cHourAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMinAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMinINTTerminalRuleCall_2_0 = (RuleCall)cMinAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cSecAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cSecINTTerminalRuleCall_3_1_0 = (RuleCall)cSecAssignment_3_1.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Group cGroup_0_0 = (Group)cGroup_0.eContents().get(0);
+		private final Assignment cHourAssignment_0_0_0 = (Assignment)cGroup_0_0.eContents().get(0);
+		private final RuleCall cHourINTTerminalRuleCall_0_0_0_0 = (RuleCall)cHourAssignment_0_0_0.eContents().get(0);
+		private final Keyword cColonKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
+		private final Assignment cMinAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMinINTTerminalRuleCall_1_0 = (RuleCall)cMinAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cSecAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cSecINTTerminalRuleCall_2_1_0 = (RuleCall)cSecAssignment_2_1.eContents().get(0);
 		
 		//TimeLiteral:
-		//	hour=INT ":" min=INT (":" sec=INT)?;
+		//	=> (hour=INT ":") min=INT (":" sec=INT)?;
 		public ParserRule getRule() { return rule; }
 
-		//hour=INT ":" min=INT (":" sec=INT)?
+		//=> (hour=INT ":") min=INT (":" sec=INT)?
 		public Group getGroup() { return cGroup; }
 
+		//=> (hour=INT ":")
+		public Group getGroup_0() { return cGroup_0; }
+
+		//hour=INT ":"
+		public Group getGroup_0_0() { return cGroup_0_0; }
+
 		//hour=INT
-		public Assignment getHourAssignment_0() { return cHourAssignment_0; }
+		public Assignment getHourAssignment_0_0_0() { return cHourAssignment_0_0_0; }
 
 		//INT
-		public RuleCall getHourINTTerminalRuleCall_0_0() { return cHourINTTerminalRuleCall_0_0; }
+		public RuleCall getHourINTTerminalRuleCall_0_0_0_0() { return cHourINTTerminalRuleCall_0_0_0_0; }
 
 		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		public Keyword getColonKeyword_0_0_1() { return cColonKeyword_0_0_1; }
 
 		//min=INT
-		public Assignment getMinAssignment_2() { return cMinAssignment_2; }
+		public Assignment getMinAssignment_1() { return cMinAssignment_1; }
 
 		//INT
-		public RuleCall getMinINTTerminalRuleCall_2_0() { return cMinINTTerminalRuleCall_2_0; }
+		public RuleCall getMinINTTerminalRuleCall_1_0() { return cMinINTTerminalRuleCall_1_0; }
 
-		//(":" sec=INT)?
-		public Group getGroup_3() { return cGroup_3; }
+		//(=> ":" sec=INT)?
+		public Group getGroup_2() { return cGroup_2; }
 
-		//":"
-		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
+		//=> ":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
 
 		//sec=INT
-		public Assignment getSecAssignment_3_1() { return cSecAssignment_3_1; }
+		public Assignment getSecAssignment_2_1() { return cSecAssignment_2_1; }
 
 		//INT
-		public RuleCall getSecINTTerminalRuleCall_3_1_0() { return cSecINTTerminalRuleCall_3_1_0; }
+		public RuleCall getSecINTTerminalRuleCall_2_1_0() { return cSecINTTerminalRuleCall_2_1_0; }
 	}
 	
 	
@@ -229,6 +283,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	private RuleElements pRule;
 	private DeviceElements pDevice;
 	private StateElements pState;
+	private XLiteralElements pXLiteral;
 	private TimeLiteralElements pTimeLiteral;
 	
 	private final Grammar grammar;
@@ -319,8 +374,19 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getStateAccess().getRule();
 	}
 
+	//XLiteral returns xbase::XExpression:
+	//	TimeLiteral | XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral |
+	//	XTypeLiteral;
+	public XLiteralElements getXLiteralAccess() {
+		return (pXLiteral != null) ? pXLiteral : (pXLiteral = new XLiteralElements());
+	}
+	
+	public ParserRule getXLiteralRule() {
+		return getXLiteralAccess().getRule();
+	}
+
 	//TimeLiteral:
-	//	hour=INT ":" min=INT (":" sec=INT)?;
+	//	=> (hour=INT ":") min=INT (":" sec=INT)?;
 	public TimeLiteralElements getTimeLiteralAccess() {
 		return (pTimeLiteral != null) ? pTimeLiteral : (pTimeLiteral = new TimeLiteralElements());
 	}
@@ -594,16 +660,6 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getXPrimaryExpressionRule() {
 		return getXPrimaryExpressionAccess().getRule();
-	}
-
-	//XLiteral returns XExpression:
-	//	XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral | XTypeLiteral;
-	public XbaseGrammarAccess.XLiteralElements getXLiteralAccess() {
-		return gaXbase.getXLiteralAccess();
-	}
-	
-	public ParserRule getXLiteralRule() {
-		return getXLiteralAccess().getRule();
 	}
 
 	//XCollectionLiteral:

@@ -2,7 +2,7 @@
  */
 package org.xtextcon.xbase.smarthome.rules;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TimeLiteral extends EObject
+public interface TimeLiteral extends XExpression
 {
   /**
    * Returns the value of the '<em><b>Hour</b></em>' attribute.
