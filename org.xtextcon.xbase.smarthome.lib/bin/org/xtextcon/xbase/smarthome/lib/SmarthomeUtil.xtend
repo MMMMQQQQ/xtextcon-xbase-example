@@ -11,7 +11,10 @@ class Simulator {
 	
 	@Property Calendar calendar
 	
-	new() {
+	@Property String message
+	
+	new(String message) {
+		this.message = message
 		this.calendar = Calendar.getInstance
 		calendar.set(Calendar.SECOND, 0)
 	}
@@ -20,7 +23,7 @@ class Simulator {
 		synchronized(calendar) {
 			calendar.set(Calendar.HOUR_OF_DAY, hour)
 			calendar.set(Calendar.MINUTE, min)
-			println("Time set to " + hour + ":" + min)
+			System.out.printf(message, calendar)
 		}
 	}
 	

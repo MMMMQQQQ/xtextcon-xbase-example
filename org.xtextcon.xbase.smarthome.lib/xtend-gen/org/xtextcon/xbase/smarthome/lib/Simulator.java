@@ -2,7 +2,6 @@ package org.xtextcon.xbase.smarthome.lib;
 
 import com.google.common.util.concurrent.RateLimiter;
 import java.util.Calendar;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtextcon.xbase.smarthome.lib.TimeDependent;
 
 @SuppressWarnings("all")
@@ -17,7 +16,18 @@ public class Simulator {
     this._calendar = calendar;
   }
   
-  public Simulator() {
+  private String _message;
+  
+  public String getMessage() {
+    return this._message;
+  }
+  
+  public void setMessage(final String message) {
+    this._message = message;
+  }
+  
+  public Simulator(final String message) {
+    this.setMessage(message);
     Calendar _instance = Calendar.getInstance();
     this.setCalendar(_instance);
     Calendar _calendar = this.getCalendar();
@@ -32,7 +42,9 @@ public class Simulator {
         _calendar.set(Calendar.HOUR_OF_DAY, hour);
         Calendar _calendar_1 = this.getCalendar();
         _calendar_1.set(Calendar.MINUTE, min);
-        InputOutput.<String>println(((("Time set to " + Integer.valueOf(hour)) + ":") + Integer.valueOf(min)));
+        String _message = this.getMessage();
+        Calendar _calendar_2 = this.getCalendar();
+        System.out.printf(_message, _calendar_2);
       }
     }
   }

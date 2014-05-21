@@ -14,9 +14,9 @@ import java.util.Scanner
 import org.eclipse.xtext.common.types.util.TypeReferences
 import org.eclipse.xtext.common.types.JvmVisibility
 import java.util.Calendar
-import java.text.SimpleDateFormat
 import org.xtextcon.xbase.smarthome.lib.TimeDependent
 import org.xtextcon.xbase.smarthome.lib.Simulator
+import java.util.ResourceBundle
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -46,6 +46,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 			val machineName = packageName+"."+model.eResource.URI.trimFileExtension.lastSegment.toFirstUpper+"RuleEngine"
 			acceptor.accept(model.toClass(machineName))
 				.initializeLater([
+					initializeResourceBundle(model, machineName)
 					initializeTimeEvents(model, rules.filter[time != null])
 					initializeStateEvents(model, rules.filter[when != null])
 					initializeRuleEngine(model, rules.filter[when != null], rules.filter[time != null])
@@ -53,6 +54,24 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 					initializeMain(model)
 				])
 		}
+	}
+	
+	def initializeResourceBundle(JvmGenericType type, Model model, String bundleName) {
+		type.members += model.toField('RESOURCE_BUNDLE', model.newTypeRef(ResourceBundle)) [
+			static = true
+			final = true
+			initializer = '''
+				«ResourceBundle».getBundle("«bundleName»");
+			'''
+		]
+		type.members += model.toMethod('localize', model.newTypeRef(String)) [
+			parameters += model.toParameter('key', model.newTypeRef(String))
+			visibility = JvmVisibility.PRIVATE
+			static = true
+			body = '''
+				return RESOURCE_BUNDLE.getString(key);
+			'''
+		]
 	}
 	
 	def initializeTimeEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
@@ -64,7 +83,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				«FOR rule : rules»
 					if (isTime(time, «rule.timeMethod»())) {
-						«System».out.println("Current time '"+new «SimpleDateFormat»("HH:mm").format(time.getTime()) + "'.");
+						«System».out.printf(localize("current_time"), time);
 						«IF rule.triggersEvent»
 							trigger(«rule.thenMethod»());
 						«ELSE»
@@ -96,7 +115,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 			parameters += model.toParameter("event", model.newTypeRef(Enum, wildCardExtends(model.newTypeRef(Object))))
 			visibility = JvmVisibility.PROTECTED
 			body = '''
-				«System».out.println("Received signal '"+event.getClass().getSimpleName()+" "+event+"'.");
+				«System».out.printf(localize("received_signal"), event.getClass().getSimpleName(), event);
 				«FOR rule : rules»
 					if (event == «rule.when.device.name».«rule.when.name») {
 						«IF rule.triggersEvent»
@@ -122,18 +141,18 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		type.members += model.toMethod("run", model.newTypeRef(Void.TYPE)) [
 			body = '''
 				«IF !timeRules.empty»
-					«Simulator» simulator = new «Simulator»();
+					«Simulator» simulator = new «Simulator»(localize("set_time"));
 					simulator.submit(this);
 				«ENDIF»
 				«Scanner» sc = new «Scanner»(«System».in);
-				«System».out.println("Simulator started. These commands are available: ");
+				«System».out.println(localize("simulator_started"));
 				«IF !timeRules.empty»
 					«System».out.println(" - Set time HH:mm");
 				«ENDIF»
 				«FOR state : stateRules.map[when.device].map[states].flatten»
 					«System».out.println(" - «state.device.name» «state.name»");
 				«ENDFOR»
-				«System».out.println("Waiting for input...");
+				«System».out.println(localize("waiting"));
 				while(sc.hasNextLine()) {
 					«String» command = sc.nextLine();
 					«String»[] split = command.split(" ");
@@ -154,14 +173,14 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 											break;
 									«ENDFOR»
 									default:
-										«System».err.println("The state "+split[1]+" is not defined for device "+split[0]+".");
+										«System».err.printf(localize("state_unknown"), split[1], split[0]);
 								}
 								break;
 						«ENDFOR»
 						default:
-							«System».err.println("Unknown device "+split[0]+ ".");
+							«System».err.printf(localize("device_unknown"), split[0]);
 					}
-					«System».out.println("Waiting for input...");
+					«System».out.println(localize("waiting"));
 				}
 			'''
 		]

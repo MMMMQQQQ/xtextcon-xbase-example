@@ -3,9 +3,9 @@ package org.xtextcon.xbase.smarthome.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
 import org.eclipse.xtext.common.types.JvmEnumerationLiteral;
 import org.eclipse.xtext.common.types.JvmEnumerationType;
+import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmMember;
@@ -102,6 +103,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
       IJvmDeclaredTypeAcceptor.IPostIndexingInitializing<JvmGenericType> _accept = acceptor.<JvmGenericType>accept(_class);
       final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
         public void apply(final JvmGenericType it) {
+          RulesJvmModelInferrer.this.initializeResourceBundle(it, model, machineName);
           final Function1<Rule, Boolean> _function = new Function1<Rule, Boolean>() {
             public Boolean apply(final Rule it) {
               TimeLiteral _time = it.getTime();
@@ -141,6 +143,56 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
+  public boolean initializeResourceBundle(final JvmGenericType type, final Model model, final String bundleName) {
+    boolean _xblockexpression = false;
+    {
+      EList<JvmMember> _members = type.getMembers();
+      JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, ResourceBundle.class);
+      final Procedure1<JvmField> _function = new Procedure1<JvmField>() {
+        public void apply(final JvmField it) {
+          it.setStatic(true);
+          it.setFinal(true);
+          StringConcatenationClient _client = new StringConcatenationClient() {
+            @Override
+            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+              _builder.append(ResourceBundle.class, "");
+              _builder.append(".getBundle(\"");
+              _builder.append(bundleName, "");
+              _builder.append("\");");
+              _builder.newLineIfNotEmpty();
+            }
+          };
+          RulesJvmModelInferrer.this._jvmTypesBuilder.setInitializer(it, _client);
+        }
+      };
+      JvmField _field = this._jvmTypesBuilder.toField(model, "RESOURCE_BUNDLE", _newTypeRef, _function);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+      EList<JvmMember> _members_1 = type.getMembers();
+      JvmTypeReference _newTypeRef_1 = this._jvmTypesBuilder.newTypeRef(model, String.class);
+      final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+        public void apply(final JvmOperation it) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, String.class);
+          JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "key", _newTypeRef);
+          RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+          it.setVisibility(JvmVisibility.PRIVATE);
+          it.setStatic(true);
+          StringConcatenationClient _client = new StringConcatenationClient() {
+            @Override
+            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+              _builder.append("return RESOURCE_BUNDLE.getString(key);");
+              _builder.newLine();
+            }
+          };
+          RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
+        }
+      };
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "localize", _newTypeRef_1, _function_1);
+      _xblockexpression = this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
+    }
+    return _xblockexpression;
+  }
+  
   public void initializeTimeEvents(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
     boolean _isEmpty = IterableExtensions.isEmpty(rules);
     boolean _not = (!_isEmpty);
@@ -169,9 +221,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append(System.class, "\t");
-                _builder.append(".out.println(\"Current time \'\"+new ");
-                _builder.append(SimpleDateFormat.class, "\t");
-                _builder.append("(\"HH:mm\").format(time.getTime()) + \"\'.\");");
+                _builder.append(".out.printf(localize(\"current_time\"), time);");
                 _builder.newLineIfNotEmpty();
                 {
                   boolean _triggersEvent = RulesJvmModelInferrer.this.triggersEvent(rule);
@@ -269,7 +319,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
             _builder.append(System.class, "");
-            _builder.append(".out.println(\"Received signal \'\"+event.getClass().getSimpleName()+\" \"+event+\"\'.\");");
+            _builder.append(".out.printf(localize(\"received_signal\"), event.getClass().getSimpleName(), event);");
             _builder.newLineIfNotEmpty();
             {
               for(final Rule rule : rules) {
@@ -353,7 +403,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append(Simulator.class, "");
                 _builder.append(" simulator = new ");
                 _builder.append(Simulator.class, "");
-                _builder.append("();");
+                _builder.append("(localize(\"set_time\"));");
                 _builder.newLineIfNotEmpty();
                 _builder.append("simulator.submit(this);");
                 _builder.newLine();
@@ -367,7 +417,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(".in);");
             _builder.newLineIfNotEmpty();
             _builder.append(System.class, "");
-            _builder.append(".out.println(\"Simulator started. These commands are available: \");");
+            _builder.append(".out.println(localize(\"simulator_started\"));");
             _builder.newLineIfNotEmpty();
             {
               boolean _isEmpty_1 = IterableExtensions.isEmpty(timeRules);
@@ -407,7 +457,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
               }
             }
             _builder.append(System.class, "");
-            _builder.append(".out.println(\"Waiting for input...\");");
+            _builder.append(".out.println(localize(\"waiting\"));");
             _builder.newLineIfNotEmpty();
             _builder.append("while(sc.hasNextLine()) {");
             _builder.newLine();
@@ -501,7 +551,7 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append("\t\t");
                 _builder.append("\t\t\t");
                 _builder.append(System.class, "\t\t\t\t\t");
-                _builder.append(".err.println(\"The state \"+split[1]+\" is not defined for device \"+split[0]+\".\");");
+                _builder.append(".err.printf(localize(\"state_unknown\"), split[1], split[0]);");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t");
                 _builder.append("\t");
@@ -518,14 +568,14 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
             _builder.newLine();
             _builder.append("\t\t\t");
             _builder.append(System.class, "\t\t\t");
-            _builder.append(".err.println(\"Unknown device \"+split[0]+ \".\");");
+            _builder.append(".err.printf(localize(\"device_unknown\"), split[0]);");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("}");
             _builder.newLine();
             _builder.append("\t");
             _builder.append(System.class, "\t");
-            _builder.append(".out.println(\"Waiting for input...\");");
+            _builder.append(".out.println(localize(\"waiting\"));");
             _builder.newLineIfNotEmpty();
             _builder.append("}");
             _builder.newLine();

@@ -1,7 +1,7 @@
 package my.home.is.my.castle;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import my.home.is.my.castle.Radiator;
 import my.home.is.my.castle.TV;
@@ -11,13 +11,19 @@ import org.xtextcon.xbase.smarthome.lib.TimeDependent;
 
 @SuppressWarnings("all")
 public class MyRuleEngine implements TimeDependent {
+  private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("my.home.is.my.castle.MyRuleEngine");;
+  
+  private static String localize(final String key) {
+    return RESOURCE_BUNDLE.getString(key);
+  }
+  
   public void trigger(final Calendar time) {
     if (isTime(time, time_5())) {
-    	System.out.println("Current time '"+new SimpleDateFormat("HH:mm").format(time.getTime()) + "'.");
+    	System.out.printf(localize("current_time"), time);
     	trigger(then_5());
     }
     if (isTime(time, time_6())) {
-    	System.out.println("Current time '"+new SimpleDateFormat("HH:mm").format(time.getTime()) + "'.");
+    	System.out.printf(localize("current_time"), time);
     	trigger(then_6());
     }
   }
@@ -40,7 +46,7 @@ public class MyRuleEngine implements TimeDependent {
   }
   
   protected void trigger(final Enum<?> event) {
-    System.out.println("Received signal '"+event.getClass().getSimpleName()+" "+event+"'.");
+    System.out.printf(localize("received_signal"), event.getClass().getSimpleName(), event);
     if (event == Window.open) {
     	trigger(then_3());
     }
@@ -50,16 +56,16 @@ public class MyRuleEngine implements TimeDependent {
   }
   
   public void run() {
-    Simulator simulator = new Simulator();
+    Simulator simulator = new Simulator(localize("set_time"));
     simulator.submit(this);
     Scanner sc = new Scanner(System.in);
-    System.out.println("Simulator started. These commands are available: ");
+    System.out.println(localize("simulator_started"));
     System.out.println(" - Set time HH:mm");
     System.out.println(" - Window open");
     System.out.println(" - Window closed");
     System.out.println(" - Radiator on");
     System.out.println(" - Radiator off");
-    System.out.println("Waiting for input...");
+    System.out.println(localize("waiting"));
     while(sc.hasNextLine()) {
     	String command = sc.nextLine();
     	String[] split = command.split(" ");
@@ -78,7 +84,7 @@ public class MyRuleEngine implements TimeDependent {
     					trigger(Window.closed);
     					break;
     				default:
-    					System.err.println("The state "+split[1]+" is not defined for device "+split[0]+".");
+    					System.err.printf(localize("state_unknown"), split[1], split[0]);
     			}
     			break;
     		case "Radiator":
@@ -90,13 +96,13 @@ public class MyRuleEngine implements TimeDependent {
     					trigger(Radiator.off);
     					break;
     				default:
-    					System.err.println("The state "+split[1]+" is not defined for device "+split[0]+".");
+    					System.err.printf(localize("state_unknown"), split[1], split[0]);
     			}
     			break;
     		default:
-    			System.err.println("Unknown device "+split[0]+ ".");
+    			System.err.printf(localize("device_unknown"), split[0]);
     	}
-    	System.out.println("Waiting for input...");
+    	System.out.println(localize("waiting"));
     }
   }
   
