@@ -46,3 +46,14 @@ class Simulator {
 	}
 	
 }
+
+class CalendarLiterals {
+	def static Calendar time() {
+		return Calendar.getInstance.timeOfDay
+	}
+	private def static Calendar timeOfDay(Calendar in) {
+		val result = Calendar.getInstance
+		result.set(0, 0, 0, in.get(Calendar.HOUR_OF_DAY), in.get(Calendar.MINUTE), 0)
+		return result
+	}
+}

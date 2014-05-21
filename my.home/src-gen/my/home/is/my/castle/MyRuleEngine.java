@@ -6,6 +6,8 @@ import java.util.Scanner;
 import my.home.is.my.castle.Radiator;
 import my.home.is.my.castle.TV;
 import my.home.is.my.castle.Window;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.xtextcon.xbase.smarthome.lib.CalendarLiterals;
 import org.xtextcon.xbase.smarthome.lib.Simulator;
 import org.xtextcon.xbase.smarthome.lib.TimeDependent;
 
@@ -26,6 +28,10 @@ public class MyRuleEngine implements TimeDependent {
     	System.out.printf(localize("current_time"), time);
     	trigger(then_6());
     }
+    if (isTime(time, time_7())) {
+    	System.out.printf(localize("current_time"), time);
+    	trigger(then_7());
+    }
   }
   
   private boolean isTime(final Calendar c1, final Calendar c2) {
@@ -45,6 +51,12 @@ public class MyRuleEngine implements TimeDependent {
     return _calendar;
   }
   
+  public Calendar time_7() {
+    final Calendar _calendar = Calendar.getInstance();
+    _calendar.set(0, 0, 0, 22, 0, 0);
+    return _calendar;
+  }
+  
   protected void trigger(final Enum<?> event) {
     System.out.printf(localize("received_signal"), event.getClass().getSimpleName(), event);
     if (event == Window.open) {
@@ -52,6 +64,9 @@ public class MyRuleEngine implements TimeDependent {
     }
     if (event == Radiator.on) {
     	trigger(then_4());
+    }
+    if (event == TV.on) {
+    	then_8();
     }
   }
   
@@ -65,6 +80,8 @@ public class MyRuleEngine implements TimeDependent {
     System.out.println(" - Window closed");
     System.out.println(" - Radiator on");
     System.out.println(" - Radiator off");
+    System.out.println(" - TV on");
+    System.out.println(" - TV off");
     System.out.println(localize("waiting"));
     while(sc.hasNextLine()) {
     	String command = sc.nextLine();
@@ -99,6 +116,18 @@ public class MyRuleEngine implements TimeDependent {
     					System.err.printf(localize("state_unknown"), split[1], split[0]);
     			}
     			break;
+    		case "TV":
+    			switch(split[1]) {
+    				case "on":
+    					trigger(TV.on);
+    					break;
+    				case "off":
+    					trigger(TV.off);
+    					break;
+    				default:
+    					System.err.printf(localize("state_unknown"), split[1], split[0]);
+    			}
+    			break;
     		default:
     			System.err.printf(localize("device_unknown"), split[0]);
     	}
@@ -120,6 +149,21 @@ public class MyRuleEngine implements TimeDependent {
   
   public TV then_6() {
     return TV.on;
+  }
+  
+  public TV then_7() {
+    return TV.off;
+  }
+  
+  public void then_8() {
+    Calendar _time = CalendarLiterals.time();
+    final Calendar _calendar = Calendar.getInstance();
+    _calendar.set(0, 0, 0, 22, 0, 0);
+    boolean _greaterThan = (_time.compareTo(_calendar) > 0);
+    if (_greaterThan) {
+      InputOutput.<String>println("Isn\'t it too late for TV?");
+      this.trigger(TV.off);
+    }
   }
   
   public static void main(final String[] args) {

@@ -5,9 +5,11 @@ package org.xtextcon.xbase.smarthome;
 
 import org.eclipse.xtext.xbase.compiler.JvmModelGenerator;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
+import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.xtextcon.xbase.smarthome.generator.SmarthomeGenerator;
 import org.xtextcon.xbase.smarthome.jvmmodel.SmarthomeCompiler;
+import org.xtextcon.xbase.smarthome.typesystem.CalendarLiteralsProvider;
 import org.xtextcon.xbase.smarthome.typesystem.SmarthomeTypeComputer;
 
 /**
@@ -27,5 +29,8 @@ public class RulesRuntimeModule extends org.xtextcon.xbase.smarthome.AbstractRul
 	public Class<? extends JvmModelGenerator> bindJvmModelGenerator() {
 		return SmarthomeGenerator.class;
 	}
-	
+
+	public Class<? extends ImplicitlyImportedFeatures> bindImplicitlyImportedFeatures() {
+		return CalendarLiteralsProvider.class;
+	}
 }
