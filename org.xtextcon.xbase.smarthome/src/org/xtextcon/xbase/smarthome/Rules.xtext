@@ -1,0 +1,22 @@
+grammar org.xtextcon.xbase.smarthome.Rules with org.eclipse.xtext.xbase.Xbase
+
+generate rules "http://www.xtextcon.org/xbase/smarthome/Rules"
+
+Model:
+	declarations+=Declaration*;
+
+Declaration:
+	Device | Rule
+;
+
+Rule:
+	'When' when=[State|QualifiedName] 'then' then=XExpression 
+;
+
+Device:
+	name=ID 'can' 'be' states+=State (',' states+=State)*
+;
+
+State:
+	name=ID
+;

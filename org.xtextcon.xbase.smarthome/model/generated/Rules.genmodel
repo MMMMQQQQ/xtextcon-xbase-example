@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtextcon.xbase.smarthome/src-gen" editDirectory="/org.xtextcon.xbase.smarthome.edit/src"
+    editorDirectory="/org.xtextcon.xbase.smarthome.editor/src" modelPluginID="org.xtextcon.xbase.smarthome"
+    forceOverwrite="true" modelName="Rules" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtextcon.xbase.smarthome.edit"
+    editorPluginID="org.xtextcon.xbase.smarthome.editor" runtimeVersion="2.9" usedGenPackages="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase">
+  <genPackages prefix="Rules" basePackage="org.xtextcon.xbase.smarthome" disposableProviderFactory="true"
+      fileExtensions="rules" ecorePackage="Rules.ecore#/">
+    <genClasses ecoreClass="Rules.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rules.ecore#//Model/declarations"/>
+    </genClasses>
+    <genClasses ecoreClass="Rules.ecore#//Declaration"/>
+    <genClasses ecoreClass="Rules.ecore#//Rule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rules.ecore#//Rule/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rules.ecore#//Rule/then"/>
+    </genClasses>
+    <genClasses ecoreClass="Rules.ecore#//Device">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//Device/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rules.ecore#//Device/states"/>
+    </genClasses>
+    <genClasses ecoreClass="Rules.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//State/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
