@@ -3,7 +3,9 @@ package org.xtextcon.xbase.smarthome.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Scanner;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -32,11 +34,14 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.typesystem.IBatchTypeResolver;
 import org.eclipse.xtext.xbase.typesystem.IResolvedTypes;
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
+import org.xtextcon.xbase.smarthome.lib.Simulator;
+import org.xtextcon.xbase.smarthome.lib.TimeDependent;
 import org.xtextcon.xbase.smarthome.rules.Declaration;
 import org.xtextcon.xbase.smarthome.rules.Device;
 import org.xtextcon.xbase.smarthome.rules.Model;
 import org.xtextcon.xbase.smarthome.rules.Rule;
 import org.xtextcon.xbase.smarthome.rules.State;
+import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
 
 /**
  * <p>Infers a JVM model from the source model.</p>
@@ -97,46 +102,280 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
       IJvmDeclaredTypeAcceptor.IPostIndexingInitializing<JvmGenericType> _accept = acceptor.<JvmGenericType>accept(_class);
       final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
         public void apply(final JvmGenericType it) {
-          RulesJvmModelInferrer.this.initializeRuleEngine(it, model, rules);
+          final Function1<Rule, Boolean> _function = new Function1<Rule, Boolean>() {
+            public Boolean apply(final Rule it) {
+              TimeLiteral _time = it.getTime();
+              return Boolean.valueOf((!Objects.equal(_time, null)));
+            }
+          };
+          Iterable<Rule> _filter = IterableExtensions.<Rule>filter(rules, _function);
+          RulesJvmModelInferrer.this.initializeTimeEvents(it, model, _filter);
+          final Function1<Rule, Boolean> _function_1 = new Function1<Rule, Boolean>() {
+            public Boolean apply(final Rule it) {
+              State _when = it.getWhen();
+              return Boolean.valueOf((!Objects.equal(_when, null)));
+            }
+          };
+          Iterable<Rule> _filter_1 = IterableExtensions.<Rule>filter(rules, _function_1);
+          RulesJvmModelInferrer.this.initializeStateEvents(it, model, _filter_1);
+          final Function1<Rule, Boolean> _function_2 = new Function1<Rule, Boolean>() {
+            public Boolean apply(final Rule it) {
+              State _when = it.getWhen();
+              return Boolean.valueOf((!Objects.equal(_when, null)));
+            }
+          };
+          Iterable<Rule> _filter_2 = IterableExtensions.<Rule>filter(rules, _function_2);
+          final Function1<Rule, Boolean> _function_3 = new Function1<Rule, Boolean>() {
+            public Boolean apply(final Rule it) {
+              TimeLiteral _time = it.getTime();
+              return Boolean.valueOf((!Objects.equal(_time, null)));
+            }
+          };
+          Iterable<Rule> _filter_3 = IterableExtensions.<Rule>filter(rules, _function_3);
+          RulesJvmModelInferrer.this.initializeRuleEngine(it, model, _filter_2, _filter_3);
+          RulesJvmModelInferrer.this.initializeActions(it, model, rules);
+          RulesJvmModelInferrer.this.initializeMain(it, model);
         }
       };
       _accept.initializeLater(_function_1);
     }
   }
   
-  public void initializeRuleEngine(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
+  public void initializeTimeEvents(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
+    boolean _isEmpty = IterableExtensions.isEmpty(rules);
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<JvmTypeReference> _superTypes = type.getSuperTypes();
+      JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, TimeDependent.class);
+      this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _newTypeRef);
+    }
     EList<JvmMember> _members = type.getMembers();
-    JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
+    JvmTypeReference _newTypeRef_1 = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
     final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
       public void apply(final JvmOperation it) {
         EList<JvmFormalParameter> _parameters = it.getParameters();
-        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, String.class);
-        JvmTypeReference _addArrayTypeDimension = RulesJvmModelInferrer.this._jvmTypesBuilder.addArrayTypeDimension(_newTypeRef);
-        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "args", _addArrayTypeDimension);
+        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Calendar.class);
+        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "time", _newTypeRef);
         RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-        it.setStatic(true);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-            _builder.append("new ");
-            String _simpleName = type.getSimpleName();
-            _builder.append(_simpleName, "");
-            _builder.append("().run();");
+            {
+              for(final Rule rule : rules) {
+                _builder.append("if (isTime(time, ");
+                String _timeMethod = RulesJvmModelInferrer.this.getTimeMethod(rule);
+                _builder.append(_timeMethod, "");
+                _builder.append("())) {");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append(System.class, "\t");
+                _builder.append(".out.println(\"Current time \'\"+new ");
+                _builder.append(SimpleDateFormat.class, "\t");
+                _builder.append("(\"HH:mm\").format(time.getTime()) + \"\'.\");");
+                _builder.newLineIfNotEmpty();
+                {
+                  boolean _triggersEvent = RulesJvmModelInferrer.this.triggersEvent(rule);
+                  if (_triggersEvent) {
+                    _builder.append("\t");
+                    _builder.append("trigger(");
+                    String _thenMethod = RulesJvmModelInferrer.this.getThenMethod(rule);
+                    _builder.append(_thenMethod, "\t");
+                    _builder.append("());");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    _builder.append("\t");
+                    String _thenMethod_1 = RulesJvmModelInferrer.this.getThenMethod(rule);
+                    _builder.append(_thenMethod_1, "\t");
+                    _builder.append("();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                _builder.append("}");
+                _builder.newLine();
+              }
+            }
+          }
+        };
+        RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "trigger", _newTypeRef_1, _function);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+    EList<JvmMember> _members_1 = type.getMembers();
+    JvmTypeReference _newTypeRef_2 = this._jvmTypesBuilder.newTypeRef(model, boolean.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Calendar.class);
+        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "c1", _newTypeRef);
+        RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _newTypeRef_1 = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Calendar.class);
+        JvmFormalParameter _parameter_1 = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "c2", _newTypeRef_1);
+        RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        it.setVisibility(JvmVisibility.PRIVATE);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return c1.get(");
+            _builder.append(Calendar.class, "");
+            _builder.append(".HOUR_OF_DAY) == c2.get(");
+            _builder.append(Calendar.class, "");
+            _builder.append(".HOUR_OF_DAY)");
+            _builder.newLineIfNotEmpty();
+            _builder.append("  ");
+            _builder.append("&& c1.get(");
+            _builder.append(Calendar.class, "  ");
+            _builder.append(".MINUTE) == c2.get(");
+            _builder.append(Calendar.class, "  ");
+            _builder.append(".MINUTE);");
             _builder.newLineIfNotEmpty();
           }
         };
         RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
       }
     };
-    JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "main", _newTypeRef, _function);
-    this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
-    EList<JvmMember> _members_1 = type.getMembers();
-    JvmTypeReference _newTypeRef_1 = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
-    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+    JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(model, "isTime", _newTypeRef_2, _function_1);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method_1);
+    for (final Rule rule : rules) {
+      EList<JvmMember> _members_2 = type.getMembers();
+      String _timeMethod = this.getTimeMethod(rule);
+      JvmTypeReference _newTypeRef_3 = this._jvmTypesBuilder.newTypeRef(model, Calendar.class);
+      final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+        public void apply(final JvmOperation it) {
+          StringConcatenationClient _client = new StringConcatenationClient() {
+            @Override
+            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+              _builder.append(Calendar.class, "");
+              _builder.append(" cal = ");
+              _builder.append(Calendar.class, "");
+              _builder.append(".getInstance();");
+              _builder.newLineIfNotEmpty();
+              _builder.append("cal.set(0, 0, 0, ");
+              TimeLiteral _time = rule.getTime();
+              int _hour = _time.getHour();
+              _builder.append(_hour, "");
+              _builder.append(", ");
+              TimeLiteral _time_1 = rule.getTime();
+              int _min = _time_1.getMin();
+              _builder.append(_min, "");
+              _builder.append(", ");
+              TimeLiteral _time_2 = rule.getTime();
+              int _sec = _time_2.getSec();
+              _builder.append(_sec, "");
+              _builder.append(");");
+              _builder.newLineIfNotEmpty();
+              _builder.append("return cal;");
+              _builder.newLine();
+            }
+          };
+          RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
+        }
+      };
+      JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(rule, _timeMethod, _newTypeRef_3, _function_2);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_2);
+    }
+  }
+  
+  public boolean initializeStateEvents(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
+    EList<JvmMember> _members = type.getMembers();
+    JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Object.class);
+        JvmWildcardTypeReference _wildCardExtends = RulesJvmModelInferrer.this._typeReferences.wildCardExtends(_newTypeRef);
+        JvmTypeReference _newTypeRef_1 = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Enum.class, _wildCardExtends);
+        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "event", _newTypeRef_1);
+        RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        it.setVisibility(JvmVisibility.PROTECTED);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append(System.class, "");
+            _builder.append(".out.println(\"Received signal \'\"+event.getClass().getSimpleName()+\" \"+event+\"\'.\");");
+            _builder.newLineIfNotEmpty();
+            {
+              for(final Rule rule : rules) {
+                _builder.append("if (event == ");
+                State _when = rule.getWhen();
+                Device _device = RulesJvmModelInferrer.this.getDevice(_when);
+                String _name = _device.getName();
+                _builder.append(_name, "");
+                _builder.append(".");
+                State _when_1 = rule.getWhen();
+                String _name_1 = _when_1.getName();
+                _builder.append(_name_1, "");
+                _builder.append(") {");
+                _builder.newLineIfNotEmpty();
+                {
+                  boolean _triggersEvent = RulesJvmModelInferrer.this.triggersEvent(rule);
+                  if (_triggersEvent) {
+                    _builder.append("\t");
+                    _builder.append("trigger(");
+                    String _thenMethod = RulesJvmModelInferrer.this.getThenMethod(rule);
+                    _builder.append(_thenMethod, "\t");
+                    _builder.append("());");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    _builder.append("\t");
+                    String _thenMethod_1 = RulesJvmModelInferrer.this.getThenMethod(rule);
+                    _builder.append(_thenMethod_1, "\t");
+                    _builder.append("();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                _builder.append("}");
+                _builder.newLine();
+              }
+            }
+          }
+        };
+        RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "trigger", _newTypeRef, _function);
+    return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+  }
+  
+  public void initializeActions(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
+    for (final Rule rule : rules) {
+      EList<JvmMember> _members = type.getMembers();
+      String _thenMethod = this.getThenMethod(rule);
+      XExpression _then = rule.getThen();
+      JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_then);
+      final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+        public void apply(final JvmOperation it) {
+          XExpression _then = rule.getThen();
+          RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _then);
+        }
+      };
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(rule, _thenMethod, _inferredType, _function);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+    }
+  }
+  
+  public boolean initializeRuleEngine(final JvmGenericType type, final Model model, final Iterable<? extends Rule> stateRules, final Iterable<? extends Rule> timeRules) {
+    EList<JvmMember> _members = type.getMembers();
+    JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
       public void apply(final JvmOperation it) {
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            {
+              boolean _isEmpty = IterableExtensions.isEmpty(timeRules);
+              boolean _not = (!_isEmpty);
+              if (_not) {
+                _builder.append(Simulator.class, "");
+                _builder.append(" simulator = new ");
+                _builder.append(Simulator.class, "");
+                _builder.append("();");
+                _builder.newLineIfNotEmpty();
+                _builder.append("simulator.submit(this);");
+                _builder.newLine();
+              }
+            }
             _builder.append(Scanner.class, "");
             _builder.append(" sc = new ");
             _builder.append(Scanner.class, "");
@@ -148,13 +387,22 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(".out.println(\"Simulator started. These commands are available: \");");
             _builder.newLineIfNotEmpty();
             {
+              boolean _isEmpty_1 = IterableExtensions.isEmpty(timeRules);
+              boolean _not_1 = (!_isEmpty_1);
+              if (_not_1) {
+                _builder.append(System.class, "");
+                _builder.append(".out.println(\" - Set time HH:mm\");");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
               final Function1<Rule, Device> _function = new Function1<Rule, Device>() {
                 public Device apply(final Rule it) {
                   State _when = it.getWhen();
                   return RulesJvmModelInferrer.this.getDevice(_when);
                 }
               };
-              Iterable<Device> _map = IterableExtensions.map(rules, _function);
+              Iterable<Device> _map = IterableExtensions.map(stateRules, _function);
               final Function1<Device, EList<State>> _function_1 = new Function1<Device, EList<State>>() {
                 public EList<State> apply(final Device it) {
                   return it.getStates();
@@ -188,6 +436,30 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(String.class, "\t");
             _builder.append("[] split = command.split(\" \");");
             _builder.newLineIfNotEmpty();
+            {
+              boolean _isEmpty_2 = IterableExtensions.isEmpty(timeRules);
+              boolean _not_2 = (!_isEmpty_2);
+              if (_not_2) {
+                _builder.append("\t");
+                _builder.append("if (split.length == 3) {");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("\t");
+                _builder.append("String[] time = split[2].split(\":\");");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("\t");
+                _builder.append("simulator.setTime(Integer.parseInt(time[0]), Integer.parseInt(time[1]));");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("\t");
+                _builder.append("continue;");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("}");
+                _builder.newLine();
+              }
+            }
             _builder.append("\t");
             _builder.append("switch(split[0]) {");
             _builder.newLine();
@@ -198,8 +470,9 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
                   return RulesJvmModelInferrer.this.getDevice(_when);
                 }
               };
-              Iterable<Device> _map_2 = IterableExtensions.map(rules, _function_2);
-              for(final Device device : _map_2) {
+              Iterable<Device> _map_2 = IterableExtensions.map(stateRules, _function_2);
+              Iterable<Device> _filterNull = IterableExtensions.<Device>filterNull(_map_2);
+              for(final Device device : _filterNull) {
                 _builder.append("\t\t");
                 _builder.append("case \"");
                 String _name_2 = device.getName();
@@ -278,87 +551,36 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
         RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
       }
     };
-    JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(model, "run", _newTypeRef_1, _function_1);
-    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method_1);
-    EList<JvmMember> _members_2 = type.getMembers();
-    JvmTypeReference _newTypeRef_2 = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
-    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "run", _newTypeRef, _function);
+    return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+  }
+  
+  public boolean initializeMain(final JvmGenericType type, final Model model) {
+    EList<JvmMember> _members = type.getMembers();
+    JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
       public void apply(final JvmOperation it) {
         EList<JvmFormalParameter> _parameters = it.getParameters();
-        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Object.class);
-        JvmWildcardTypeReference _wildCardExtends = RulesJvmModelInferrer.this._typeReferences.wildCardExtends(_newTypeRef);
-        JvmTypeReference _newTypeRef_1 = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, Enum.class, _wildCardExtends);
-        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "event", _newTypeRef_1);
+        JvmTypeReference _newTypeRef = RulesJvmModelInferrer.this._jvmTypesBuilder.newTypeRef(model, String.class);
+        JvmTypeReference _addArrayTypeDimension = RulesJvmModelInferrer.this._jvmTypesBuilder.addArrayTypeDimension(_newTypeRef);
+        JvmFormalParameter _parameter = RulesJvmModelInferrer.this._jvmTypesBuilder.toParameter(model, "args", _addArrayTypeDimension);
         RulesJvmModelInferrer.this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-        it.setVisibility(JvmVisibility.PROTECTED);
+        it.setStatic(true);
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-            _builder.append(System.class, "");
-            _builder.append(".out.println(\"Received signal \'\"+event.getClass().getSimpleName()+\" \"+event+\"\'.\");");
+            _builder.append("new ");
+            String _simpleName = type.getSimpleName();
+            _builder.append(_simpleName, "");
+            _builder.append("().run();");
             _builder.newLineIfNotEmpty();
-            {
-              for(final Rule rule : rules) {
-                _builder.append("if (event == ");
-                State _when = rule.getWhen();
-                Device _device = RulesJvmModelInferrer.this.getDevice(_when);
-                String _name = _device.getName();
-                _builder.append(_name, "");
-                _builder.append(".");
-                State _when_1 = rule.getWhen();
-                String _name_1 = _when_1.getName();
-                _builder.append(_name_1, "");
-                _builder.append(") {");
-                _builder.newLineIfNotEmpty();
-                {
-                  boolean _triggersEvent = RulesJvmModelInferrer.this.triggersEvent(rule);
-                  if (_triggersEvent) {
-                    _builder.append("\t");
-                    _builder.append("trigger(");
-                    String _thenMethod = RulesJvmModelInferrer.this.getThenMethod(rule);
-                    _builder.append(_thenMethod, "\t");
-                    _builder.append("());");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    _builder.append("\t");
-                    String _thenMethod_1 = RulesJvmModelInferrer.this.getThenMethod(rule);
-                    _builder.append(_thenMethod_1, "\t");
-                    _builder.append("();");
-                    _builder.newLineIfNotEmpty();
-                  }
-                }
-                _builder.append("}");
-                _builder.newLine();
-              }
-            }
           }
         };
         RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _client);
       }
     };
-    JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(model, "trigger", _newTypeRef_2, _function_2);
-    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_2);
-    final Function1<Rule, Boolean> _function_3 = new Function1<Rule, Boolean>() {
-      public Boolean apply(final Rule it) {
-        XExpression _then = it.getThen();
-        return Boolean.valueOf((!Objects.equal(_then, null)));
-      }
-    };
-    Iterable<? extends Rule> _filter = IterableExtensions.filter(rules, _function_3);
-    for (final Rule rule : _filter) {
-      EList<JvmMember> _members_3 = type.getMembers();
-      String _thenMethod = this.getThenMethod(rule);
-      XExpression _then = rule.getThen();
-      JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(_then);
-      final Procedure1<JvmOperation> _function_4 = new Procedure1<JvmOperation>() {
-        public void apply(final JvmOperation it) {
-          XExpression _then = rule.getThen();
-          RulesJvmModelInferrer.this._jvmTypesBuilder.setBody(it, _then);
-        }
-      };
-      JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(rule, _thenMethod, _inferredType, _function_4);
-      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_3);
-    }
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(model, "main", _newTypeRef, _function);
+    return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
   }
   
   public boolean triggersEvent(final Rule rule) {
@@ -378,6 +600,13 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     EList<EObject> _eContents = _eContainer.eContents();
     int _indexOf = _eContents.indexOf(rule);
     return ("then_" + Integer.valueOf(_indexOf));
+  }
+  
+  public String getTimeMethod(final Rule rule) {
+    EObject _eContainer = rule.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    int _indexOf = _eContents.indexOf(rule);
+    return ("time_" + Integer.valueOf(_indexOf));
   }
   
   public Device getDevice(final State state) {

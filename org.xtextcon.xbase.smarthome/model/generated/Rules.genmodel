@@ -13,6 +13,7 @@
     <genClasses ecoreClass="Rules.ecore#//Declaration"/>
     <genClasses ecoreClass="Rules.ecore#//Rule">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rules.ecore#//Rule/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rules.ecore#//Rule/time"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rules.ecore#//Rule/then"/>
     </genClasses>
     <genClasses ecoreClass="Rules.ecore#//Device">
@@ -21,6 +22,11 @@
     </genClasses>
     <genClasses ecoreClass="Rules.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//State/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Rules.ecore#//TimeLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//TimeLiteral/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//TimeLiteral/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rules.ecore#//TimeLiteral/sec"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

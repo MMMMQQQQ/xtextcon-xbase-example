@@ -68,6 +68,15 @@ public interface RulesFactory extends EFactory
   State createState();
 
   /**
+   * Returns a new object of class '<em>Time Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Time Literal</em>'.
+   * @generated
+   */
+  TimeLiteral createTimeLiteral();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

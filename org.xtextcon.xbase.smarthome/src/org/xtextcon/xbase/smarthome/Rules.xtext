@@ -10,7 +10,9 @@ Declaration:
 ;
 
 Rule:
-	'When' when=[State|QualifiedName] 'then' then=XExpression 
+	'When' 
+	(when=[State|QualifiedName] | time=TimeLiteral) 
+	'then' then=XExpression 
 ;
 
 Device:
@@ -19,4 +21,8 @@ Device:
 
 State:
 	name=ID
+;
+
+TimeLiteral:
+	hour=INT ':' min=INT (':' sec=INT)?
 ;

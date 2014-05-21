@@ -59,31 +59,43 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Rule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWhenKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cWhenAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cWhenStateCrossReference_1_0 = (CrossReference)cWhenAssignment_1.eContents().get(0);
-		private final RuleCall cWhenStateQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cWhenStateCrossReference_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cWhenAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final CrossReference cWhenStateCrossReference_1_0_0 = (CrossReference)cWhenAssignment_1_0.eContents().get(0);
+		private final RuleCall cWhenStateQualifiedNameParserRuleCall_1_0_0_1 = (RuleCall)cWhenStateCrossReference_1_0_0.eContents().get(1);
+		private final Assignment cTimeAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cTimeTimeLiteralParserRuleCall_1_1_0 = (RuleCall)cTimeAssignment_1_1.eContents().get(0);
 		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cThenAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cThenXExpressionParserRuleCall_3_0 = (RuleCall)cThenAssignment_3.eContents().get(0);
 		
 		//Rule:
-		//	"When" when=[State|QualifiedName] "then" then=XExpression;
+		//	"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression;
 		public ParserRule getRule() { return rule; }
 
-		//"When" when=[State|QualifiedName] "then" then=XExpression
+		//"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression
 		public Group getGroup() { return cGroup; }
 
 		//"When"
 		public Keyword getWhenKeyword_0() { return cWhenKeyword_0; }
 
+		//when=[State|QualifiedName] | time=TimeLiteral
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
 		//when=[State|QualifiedName]
-		public Assignment getWhenAssignment_1() { return cWhenAssignment_1; }
+		public Assignment getWhenAssignment_1_0() { return cWhenAssignment_1_0; }
 
 		//[State|QualifiedName]
-		public CrossReference getWhenStateCrossReference_1_0() { return cWhenStateCrossReference_1_0; }
+		public CrossReference getWhenStateCrossReference_1_0_0() { return cWhenStateCrossReference_1_0_0; }
 
 		//QualifiedName
-		public RuleCall getWhenStateQualifiedNameParserRuleCall_1_0_1() { return cWhenStateQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getWhenStateQualifiedNameParserRuleCall_1_0_0_1() { return cWhenStateQualifiedNameParserRuleCall_1_0_0_1; }
+
+		//time=TimeLiteral
+		public Assignment getTimeAssignment_1_1() { return cTimeAssignment_1_1; }
+
+		//TimeLiteral
+		public RuleCall getTimeTimeLiteralParserRuleCall_1_1_0() { return cTimeTimeLiteralParserRuleCall_1_1_0; }
 
 		//"then"
 		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
@@ -162,6 +174,54 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
+
+	public class TimeLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TimeLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cHourAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cHourINTTerminalRuleCall_0_0 = (RuleCall)cHourAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cMinAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMinINTTerminalRuleCall_2_0 = (RuleCall)cMinAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSecAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSecINTTerminalRuleCall_3_1_0 = (RuleCall)cSecAssignment_3_1.eContents().get(0);
+		
+		//TimeLiteral:
+		//	hour=INT ":" min=INT (":" sec=INT)?;
+		public ParserRule getRule() { return rule; }
+
+		//hour=INT ":" min=INT (":" sec=INT)?
+		public Group getGroup() { return cGroup; }
+
+		//hour=INT
+		public Assignment getHourAssignment_0() { return cHourAssignment_0; }
+
+		//INT
+		public RuleCall getHourINTTerminalRuleCall_0_0() { return cHourINTTerminalRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//min=INT
+		public Assignment getMinAssignment_2() { return cMinAssignment_2; }
+
+		//INT
+		public RuleCall getMinINTTerminalRuleCall_2_0() { return cMinINTTerminalRuleCall_2_0; }
+
+		//(":" sec=INT)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//":"
+		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
+
+		//sec=INT
+		public Assignment getSecAssignment_3_1() { return cSecAssignment_3_1; }
+
+		//INT
+		public RuleCall getSecINTTerminalRuleCall_3_1_0() { return cSecINTTerminalRuleCall_3_1_0; }
+	}
 	
 	
 	private ModelElements pModel;
@@ -169,6 +229,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	private RuleElements pRule;
 	private DeviceElements pDevice;
 	private StateElements pState;
+	private TimeLiteralElements pTimeLiteral;
 	
 	private final Grammar grammar;
 
@@ -229,7 +290,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Rule:
-	//	"When" when=[State|QualifiedName] "then" then=XExpression;
+	//	"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression;
 	public RuleElements getRuleAccess() {
 		return (pRule != null) ? pRule : (pRule = new RuleElements());
 	}
@@ -256,6 +317,16 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStateRule() {
 		return getStateAccess().getRule();
+	}
+
+	//TimeLiteral:
+	//	hour=INT ":" min=INT (":" sec=INT)?;
+	public TimeLiteralElements getTimeLiteralAccess() {
+		return (pTimeLiteral != null) ? pTimeLiteral : (pTimeLiteral = new TimeLiteralElements());
+	}
+	
+	public ParserRule getTimeLiteralRule() {
+		return getTimeLiteralAccess().getRule();
 	}
 
 	//XExpression:

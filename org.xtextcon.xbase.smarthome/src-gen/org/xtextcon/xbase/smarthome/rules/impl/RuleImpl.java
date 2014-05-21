@@ -15,6 +15,7 @@ import org.eclipse.xtext.xbase.XExpression;
 import org.xtextcon.xbase.smarthome.rules.Rule;
 import org.xtextcon.xbase.smarthome.rules.RulesPackage;
 import org.xtextcon.xbase.smarthome.rules.State;
+import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +25,7 @@ import org.xtextcon.xbase.smarthome.rules.State;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.xtextcon.xbase.smarthome.rules.impl.RuleImpl#getWhen <em>When</em>}</li>
+ *   <li>{@link org.xtextcon.xbase.smarthome.rules.impl.RuleImpl#getTime <em>Time</em>}</li>
  *   <li>{@link org.xtextcon.xbase.smarthome.rules.impl.RuleImpl#getThen <em>Then</em>}</li>
  * </ul>
  * </p>
@@ -41,6 +43,16 @@ public class RuleImpl extends DeclarationImpl implements Rule
    * @ordered
    */
   protected State when;
+
+  /**
+   * The cached value of the '{@link #getTime() <em>Time</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTime()
+   * @generated
+   * @ordered
+   */
+  protected TimeLiteral time;
 
   /**
    * The cached value of the '{@link #getThen() <em>Then</em>}' containment reference.
@@ -121,6 +133,54 @@ public class RuleImpl extends DeclarationImpl implements Rule
    * <!-- end-user-doc -->
    * @generated
    */
+  public TimeLiteral getTime()
+  {
+    return time;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTime(TimeLiteral newTime, NotificationChain msgs)
+  {
+    TimeLiteral oldTime = time;
+    time = newTime;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULE__TIME, oldTime, newTime);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTime(TimeLiteral newTime)
+  {
+    if (newTime != time)
+    {
+      NotificationChain msgs = null;
+      if (time != null)
+        msgs = ((InternalEObject)time).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULE__TIME, null, msgs);
+      if (newTime != null)
+        msgs = ((InternalEObject)newTime).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULE__TIME, null, msgs);
+      msgs = basicSetTime(newTime, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULE__TIME, newTime, newTime));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public XExpression getThen()
   {
     return then;
@@ -174,6 +234,8 @@ public class RuleImpl extends DeclarationImpl implements Rule
   {
     switch (featureID)
     {
+      case RulesPackage.RULE__TIME:
+        return basicSetTime(null, msgs);
       case RulesPackage.RULE__THEN:
         return basicSetThen(null, msgs);
     }
@@ -193,6 +255,8 @@ public class RuleImpl extends DeclarationImpl implements Rule
       case RulesPackage.RULE__WHEN:
         if (resolve) return getWhen();
         return basicGetWhen();
+      case RulesPackage.RULE__TIME:
+        return getTime();
       case RulesPackage.RULE__THEN:
         return getThen();
     }
@@ -211,6 +275,9 @@ public class RuleImpl extends DeclarationImpl implements Rule
     {
       case RulesPackage.RULE__WHEN:
         setWhen((State)newValue);
+        return;
+      case RulesPackage.RULE__TIME:
+        setTime((TimeLiteral)newValue);
         return;
       case RulesPackage.RULE__THEN:
         setThen((XExpression)newValue);
@@ -232,6 +299,9 @@ public class RuleImpl extends DeclarationImpl implements Rule
       case RulesPackage.RULE__WHEN:
         setWhen((State)null);
         return;
+      case RulesPackage.RULE__TIME:
+        setTime((TimeLiteral)null);
+        return;
       case RulesPackage.RULE__THEN:
         setThen((XExpression)null);
         return;
@@ -251,6 +321,8 @@ public class RuleImpl extends DeclarationImpl implements Rule
     {
       case RulesPackage.RULE__WHEN:
         return when != null;
+      case RulesPackage.RULE__TIME:
+        return time != null;
       case RulesPackage.RULE__THEN:
         return then != null;
     }

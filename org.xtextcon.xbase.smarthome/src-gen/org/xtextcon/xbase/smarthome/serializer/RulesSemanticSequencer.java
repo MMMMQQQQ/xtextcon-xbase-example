@@ -62,6 +62,7 @@ import org.xtextcon.xbase.smarthome.rules.Model;
 import org.xtextcon.xbase.smarthome.rules.Rule;
 import org.xtextcon.xbase.smarthome.rules.RulesPackage;
 import org.xtextcon.xbase.smarthome.rules.State;
+import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
 import org.xtextcon.xbase.smarthome.services.RulesGrammarAccess;
 
 @SuppressWarnings("all")
@@ -95,6 +96,12 @@ public class RulesSemanticSequencer extends XbaseSemanticSequencer {
 			case RulesPackage.STATE:
 				if(context == grammarAccess.getStateRule()) {
 					sequence_State(context, (State) semanticObject); 
+					return; 
+				}
+				else break;
+			case RulesPackage.TIME_LITERAL:
+				if(context == grammarAccess.getTimeLiteralRule()) {
+					sequence_TimeLiteral(context, (TimeLiteral) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1214,20 +1221,10 @@ public class RulesSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (when=[State|QualifiedName] then=XExpression)
+	 *     ((when=[State|QualifiedName] | time=TimeLiteral) then=XExpression)
 	 */
 	protected void sequence_Rule(EObject context, Rule semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RulesPackage.Literals.RULE__WHEN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RulesPackage.Literals.RULE__WHEN));
-			if(transientValues.isValueTransient(semanticObject, RulesPackage.Literals.RULE__THEN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RulesPackage.Literals.RULE__THEN));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRuleAccess().getWhenStateQualifiedNameParserRuleCall_1_0_1(), semanticObject.getWhen());
-		feeder.accept(grammarAccess.getRuleAccess().getThenXExpressionParserRuleCall_3_0(), semanticObject.getThen());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1244,5 +1241,14 @@ public class RulesSemanticSequencer extends XbaseSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getStateAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (hour=INT min=INT sec=INT?)
+	 */
+	protected void sequence_TimeLiteral(EObject context, TimeLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

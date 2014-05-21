@@ -160,7 +160,7 @@ ruleRule returns [EObject current=null]
     {
     	newLeafNode(otherlv_0, grammarAccess.getRuleAccess().getWhenKeyword_0());
     }
-(
+((
 (
 		{
 			if ($current==null) {
@@ -168,30 +168,49 @@ ruleRule returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getRuleAccess().getWhenStateCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getRuleAccess().getWhenStateCrossReference_1_0_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_2='then' 
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRuleAccess().getTimeTimeLiteralParserRuleCall_1_1_0()); 
+	    }
+		lv_time_2_0=ruleTimeLiteral		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRuleRule());
+	        }
+       		set(
+       			$current, 
+       			"time",
+        		lv_time_2_0, 
+        		"TimeLiteral");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))	otherlv_3='then' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getRuleAccess().getThenKeyword_2());
+    	newLeafNode(otherlv_3, grammarAccess.getRuleAccess().getThenKeyword_2());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getRuleAccess().getThenXExpressionParserRuleCall_3_0()); 
 	    }
-		lv_then_3_0=ruleXExpression		{
+		lv_then_4_0=ruleXExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRuleRule());
 	        }
        		set(
        			$current, 
        			"then",
-        		lv_then_3_0, 
+        		lv_then_4_0, 
         		"XExpression");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -324,6 +343,89 @@ ruleState returns [EObject current=null]
 
 )
 )
+;
+
+
+
+
+
+// Entry rule entryRuleTimeLiteral
+entryRuleTimeLiteral returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTimeLiteralRule()); }
+	 iv_ruleTimeLiteral=ruleTimeLiteral 
+	 { $current=$iv_ruleTimeLiteral.current; } 
+	 EOF 
+;
+
+// Rule TimeLiteral
+ruleTimeLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_hour_0_0=RULE_INT
+		{
+			newLeafNode(lv_hour_0_0, grammarAccess.getTimeLiteralAccess().getHourINTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTimeLiteralRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"hour",
+        		lv_hour_0_0, 
+        		"INT");
+	    }
+
+)
+)	otherlv_1=':' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTimeLiteralAccess().getColonKeyword_1());
+    }
+(
+(
+		lv_min_2_0=RULE_INT
+		{
+			newLeafNode(lv_min_2_0, grammarAccess.getTimeLiteralAccess().getMinINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTimeLiteralRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"min",
+        		lv_min_2_0, 
+        		"INT");
+	    }
+
+)
+)(	otherlv_3=':' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getTimeLiteralAccess().getColonKeyword_3_0());
+    }
+(
+(
+		lv_sec_4_0=RULE_INT
+		{
+			newLeafNode(lv_sec_4_0, grammarAccess.getTimeLiteralAccess().getSecINTTerminalRuleCall_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTimeLiteralRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"sec",
+        		lv_sec_4_0, 
+        		"INT");
+	    }
+
+)
+))?)
 ;
 
 

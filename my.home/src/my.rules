@@ -1,5 +1,9 @@
 Window can be open, closed
 Radiator can be on, off
+TV can be on, off
 
 When Window.open then Radiator.off
 When Radiator.on then Window.closed
+
+When 20:15 then TV.off
+When 20:00 then TV.on

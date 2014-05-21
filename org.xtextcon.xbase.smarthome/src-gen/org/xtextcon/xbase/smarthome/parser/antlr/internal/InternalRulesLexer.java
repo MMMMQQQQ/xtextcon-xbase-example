@@ -39,7 +39,7 @@ public class InternalRulesLexer extends Lexer {
     public static final int T__56=56;
     public static final int T__19=19;
     public static final int T__57=57;
-    public static final int RULE_HEX=6;
+    public static final int RULE_HEX=7;
     public static final int T__58=58;
     public static final int T__16=16;
     public static final int T__51=51;
@@ -53,7 +53,7 @@ public class InternalRulesLexer extends Lexer {
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int T__59=59;
-    public static final int RULE_INT=7;
+    public static final int RULE_INT=5;
     public static final int RULE_DECIMAL=8;
     public static final int T__50=50;
     public static final int T__42=42;
@@ -81,7 +81,7 @@ public class InternalRulesLexer extends Lexer {
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
-    public static final int RULE_STRING=5;
+    public static final int RULE_STRING=6;
     public static final int T__33=33;
     public static final int T__71=71;
     public static final int T__34=34;
@@ -223,10 +223,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:16:7: ( '=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:16:9: '='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:16:7: ( ':' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:16:9: ':'
             {
-            match('='); 
+            match(':'); 
 
             }
 
@@ -243,11 +243,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:17:7: ( '+=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:17:9: '+='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:17:7: ( '=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:17:9: '='
             {
-            match("+="); 
-
+            match('='); 
 
             }
 
@@ -264,10 +263,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:18:7: ( '-=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:18:9: '-='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:18:7: ( '+=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:18:9: '+='
             {
-            match("-="); 
+            match("+="); 
 
 
             }
@@ -285,10 +284,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:19:7: ( '*=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:19:9: '*='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:19:7: ( '-=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:19:9: '-='
             {
-            match("*="); 
+            match("-="); 
 
 
             }
@@ -306,10 +305,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:20:7: ( '/=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:20:9: '/='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:20:7: ( '*=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:20:9: '*='
             {
-            match("/="); 
+            match("*="); 
 
 
             }
@@ -327,10 +326,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:21:7: ( '%=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:21:9: '%='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:21:7: ( '/=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:21:9: '/='
             {
-            match("%="); 
+            match("/="); 
 
 
             }
@@ -348,10 +347,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:22:7: ( '<' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:22:9: '<'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:22:7: ( '%=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:22:9: '%='
             {
-            match('<'); 
+            match("%="); 
+
 
             }
 
@@ -368,10 +368,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:23:7: ( '>' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:23:9: '>'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:23:7: ( '<' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:23:9: '<'
             {
-            match('>'); 
+            match('<'); 
 
             }
 
@@ -388,11 +388,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:24:7: ( '>=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:24:9: '>='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:24:7: ( '>' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:24:9: '>'
             {
-            match(">="); 
-
+            match('>'); 
 
             }
 
@@ -409,10 +408,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:25:7: ( '||' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:25:9: '||'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:25:7: ( '>=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:25:9: '>='
             {
-            match("||"); 
+            match(">="); 
 
 
             }
@@ -430,10 +429,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:26:7: ( '&&' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:26:9: '&&'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:26:7: ( '||' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:26:9: '||'
             {
-            match("&&"); 
+            match("||"); 
 
 
             }
@@ -451,10 +450,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:27:7: ( '==' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:27:9: '=='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:27:7: ( '&&' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:27:9: '&&'
             {
-            match("=="); 
+            match("&&"); 
 
 
             }
@@ -472,10 +471,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:28:7: ( '!=' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:28:9: '!='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:28:7: ( '==' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:28:9: '=='
             {
-            match("!="); 
+            match("=="); 
 
 
             }
@@ -493,10 +492,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:29:7: ( '===' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:29:9: '==='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:29:7: ( '!=' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:29:9: '!='
             {
-            match("==="); 
+            match("!="); 
 
 
             }
@@ -514,10 +513,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:30:7: ( '!==' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:30:9: '!=='
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:30:7: ( '===' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:30:9: '==='
             {
-            match("!=="); 
+            match("==="); 
 
 
             }
@@ -535,10 +534,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:31:7: ( 'instanceof' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:31:9: 'instanceof'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:31:7: ( '!==' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:31:9: '!=='
             {
-            match("instanceof"); 
+            match("!=="); 
 
 
             }
@@ -556,10 +555,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:32:7: ( '->' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:32:9: '->'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:32:7: ( 'instanceof' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:32:9: 'instanceof'
             {
-            match("->"); 
+            match("instanceof"); 
 
 
             }
@@ -577,10 +576,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:33:7: ( '..<' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:33:9: '..<'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:33:7: ( '->' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:33:9: '->'
             {
-            match("..<"); 
+            match("->"); 
 
 
             }
@@ -598,10 +597,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:34:7: ( '..' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:34:9: '..'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:34:7: ( '..<' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:34:9: '..<'
             {
-            match(".."); 
+            match("..<"); 
 
 
             }
@@ -619,10 +618,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:35:7: ( '=>' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:35:9: '=>'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:35:7: ( '..' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:35:9: '..'
             {
-            match("=>"); 
+            match(".."); 
 
 
             }
@@ -640,10 +639,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:36:7: ( '<>' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:36:9: '<>'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:36:7: ( '=>' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:36:9: '=>'
             {
-            match("<>"); 
+            match("=>"); 
 
 
             }
@@ -661,10 +660,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:37:7: ( '?:' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:37:9: '?:'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:37:7: ( '<>' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:37:9: '<>'
             {
-            match("?:"); 
+            match("<>"); 
 
 
             }
@@ -682,10 +681,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:38:7: ( '+' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:38:9: '+'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:38:7: ( '?:' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:38:9: '?:'
             {
-            match('+'); 
+            match("?:"); 
+
 
             }
 
@@ -702,10 +702,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:39:7: ( '-' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:39:9: '-'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:39:7: ( '+' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:39:9: '+'
             {
-            match('-'); 
+            match('+'); 
 
             }
 
@@ -722,10 +722,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:40:7: ( '*' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:40:9: '*'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:40:7: ( '-' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:40:9: '-'
             {
-            match('*'); 
+            match('-'); 
 
             }
 
@@ -742,11 +742,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:41:7: ( '**' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:41:9: '**'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:41:7: ( '*' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:41:9: '*'
             {
-            match("**"); 
-
+            match('*'); 
 
             }
 
@@ -763,10 +762,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:42:7: ( '/' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:42:9: '/'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:42:7: ( '**' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:42:9: '**'
             {
-            match('/'); 
+            match("**"); 
+
 
             }
 
@@ -783,10 +783,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:43:7: ( '%' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:43:9: '%'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:43:7: ( '/' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:43:9: '/'
             {
-            match('%'); 
+            match('/'); 
 
             }
 
@@ -803,10 +803,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:44:7: ( '!' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:44:9: '!'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:44:7: ( '%' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:44:9: '%'
             {
-            match('!'); 
+            match('%'); 
 
             }
 
@@ -823,11 +823,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:45:7: ( 'as' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:45:9: 'as'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:45:7: ( '!' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:45:9: '!'
             {
-            match("as"); 
-
+            match('!'); 
 
             }
 
@@ -844,10 +843,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:46:7: ( '++' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:46:9: '++'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:46:7: ( 'as' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:46:9: 'as'
             {
-            match("++"); 
+            match("as"); 
 
 
             }
@@ -865,10 +864,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:47:7: ( '--' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:47:9: '--'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:47:7: ( '++' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:47:9: '++'
             {
-            match("--"); 
+            match("++"); 
 
 
             }
@@ -886,10 +885,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:48:7: ( '.' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:48:9: '.'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:48:7: ( '--' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:48:9: '--'
             {
-            match('.'); 
+            match("--"); 
+
 
             }
 
@@ -906,11 +906,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:49:7: ( '::' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:49:9: '::'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:49:7: ( '.' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:49:9: '.'
             {
-            match("::"); 
-
+            match('.'); 
 
             }
 
@@ -927,10 +926,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:50:7: ( '?.' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:50:9: '?.'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:50:7: ( '::' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:50:9: '::'
             {
-            match("?."); 
+            match("::"); 
 
 
             }
@@ -948,10 +947,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:51:7: ( '(' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:51:9: '('
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:51:7: ( '?.' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:51:9: '?.'
             {
-            match('('); 
+            match("?."); 
+
 
             }
 
@@ -968,10 +968,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:52:7: ( ')' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:52:9: ')'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:52:7: ( '(' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:52:9: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -988,10 +988,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:53:7: ( '#' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:53:9: '#'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:53:7: ( ')' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:53:9: ')'
             {
-            match('#'); 
+            match(')'); 
 
             }
 
@@ -1008,10 +1008,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:54:7: ( '{' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:54:9: '{'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:54:7: ( '#' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:54:9: '#'
             {
-            match('{'); 
+            match('#'); 
 
             }
 
@@ -1028,10 +1028,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:55:7: ( '}' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:55:9: '}'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:55:7: ( '{' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:55:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -1048,10 +1048,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:56:7: ( '[' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:56:9: '['
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:56:7: ( '}' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:56:9: '}'
             {
-            match('['); 
+            match('}'); 
 
             }
 
@@ -1068,10 +1068,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:57:7: ( ']' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:57:9: ']'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:57:7: ( '[' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:57:9: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -1088,10 +1088,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:58:7: ( '|' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:58:9: '|'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:58:7: ( ']' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:58:9: ']'
             {
-            match('|'); 
+            match(']'); 
 
             }
 
@@ -1108,10 +1108,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:59:7: ( ';' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:59:9: ';'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:59:7: ( '|' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:59:9: '|'
             {
-            match(';'); 
+            match('|'); 
 
             }
 
@@ -1128,11 +1128,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:60:7: ( 'if' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:60:9: 'if'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:60:7: ( ';' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:60:9: ';'
             {
-            match("if"); 
-
+            match(';'); 
 
             }
 
@@ -1149,10 +1148,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:61:7: ( 'else' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:61:9: 'else'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:61:7: ( 'if' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:61:9: 'if'
             {
-            match("else"); 
+            match("if"); 
 
 
             }
@@ -1170,10 +1169,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:62:7: ( 'switch' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:62:9: 'switch'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:62:7: ( 'else' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:62:9: 'else'
             {
-            match("switch"); 
+            match("else"); 
 
 
             }
@@ -1191,10 +1190,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:63:7: ( ':' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:63:9: ':'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:63:7: ( 'switch' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:63:9: 'switch'
             {
-            match(':'); 
+            match("switch"); 
+
 
             }
 
@@ -1734,10 +1734,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_HEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             {
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:12: ( '0x' | '0X' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:12: ( '0x' | '0X' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1765,7 +1765,7 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:13: '0x'
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:13: '0x'
                     {
                     match("0x"); 
 
@@ -1773,7 +1773,7 @@ public class InternalRulesLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:18: '0X'
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:18: '0X'
                     {
                     match("0X"); 
 
@@ -1783,7 +1783,7 @@ public class InternalRulesLexer extends Lexer {
 
             }
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
             int cnt2=0;
             loop2:
             do {
@@ -1821,7 +1821,7 @@ public class InternalRulesLexer extends Lexer {
                 cnt2++;
             } while (true);
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1830,10 +1830,10 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     {
                     match('#'); 
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -1851,7 +1851,7 @@ public class InternalRulesLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:64: ( 'b' | 'B' ) ( 'i' | 'I' )
+                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:64: ( 'b' | 'B' ) ( 'i' | 'I' )
                             {
                             if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                                 input.consume();
@@ -1875,7 +1875,7 @@ public class InternalRulesLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6123:84: ( 'l' | 'L' )
+                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6225:84: ( 'l' | 'L' )
                             {
                             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                                 input.consume();
@@ -1914,11 +1914,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6125:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6125:12: '0' .. '9' ( '0' .. '9' | '_' )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6227:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6227:12: '0' .. '9' ( '0' .. '9' | '_' )*
             {
             matchRange('0','9'); 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6125:21: ( '0' .. '9' | '_' )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6227:21: ( '0' .. '9' | '_' )*
             loop5:
             do {
                 int alt5=2;
@@ -1967,11 +1967,11 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             {
             mRULE_INT(); 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1980,7 +1980,7 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -1991,7 +1991,7 @@ public class InternalRulesLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:36: ( '+' | '-' )?
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:36: ( '+' | '-' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -2024,7 +2024,7 @@ public class InternalRulesLexer extends Lexer {
 
             }
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             int alt8=3;
             int LA8_0 = input.LA(1);
 
@@ -2036,7 +2036,7 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
                     {
                     if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                         input.consume();
@@ -2060,7 +2060,7 @@ public class InternalRulesLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6127:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6229:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
                     {
                     if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='d'||input.LA(1)=='f'||input.LA(1)=='l' ) {
                         input.consume();
@@ -2093,10 +2093,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6129:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6129:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6231:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6231:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             {
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6129:11: ( '^' )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6231:11: ( '^' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2105,7 +2105,7 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6129:11: '^'
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6231:11: '^'
                     {
                     match('^'); 
 
@@ -2123,7 +2123,7 @@ public class InternalRulesLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6129:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6231:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             loop10:
             do {
                 int alt10=2;
@@ -2172,10 +2172,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2193,10 +2193,10 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop11:
                     do {
                         int alt11=3;
@@ -2212,7 +2212,7 @@ public class InternalRulesLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2228,7 +2228,7 @@ public class InternalRulesLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2253,10 +2253,10 @@ public class InternalRulesLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop12:
                     do {
                         int alt12=3;
@@ -2272,7 +2272,7 @@ public class InternalRulesLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2288,7 +2288,7 @@ public class InternalRulesLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6131:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6233:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2331,12 +2331,12 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6133:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6133:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6235:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6235:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6133:24: ( options {greedy=false; } : . )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6235:24: ( options {greedy=false; } : . )*
             loop14:
             do {
                 int alt14=2;
@@ -2361,7 +2361,7 @@ public class InternalRulesLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6133:52: .
+            	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6235:52: .
             	    {
             	    matchAny(); 
 
@@ -2391,12 +2391,12 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop15:
             do {
                 int alt15=2;
@@ -2409,7 +2409,7 @@ public class InternalRulesLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2429,7 +2429,7 @@ public class InternalRulesLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:40: ( ( '\\r' )? '\\n' )?
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:40: ( ( '\\r' )? '\\n' )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2438,9 +2438,9 @@ public class InternalRulesLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:41: ( '\\r' )? '\\n'
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:41: ( '\\r' )?
+                    // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:41: ( '\\r' )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2449,7 +2449,7 @@ public class InternalRulesLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6135:41: '\\r'
+                            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6237:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2481,10 +2481,10 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6137:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6137:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6239:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6239:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6137:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6239:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt18=0;
             loop18:
             do {
@@ -2538,8 +2538,8 @@ public class InternalRulesLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6139:16: ( . )
-            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6139:18: .
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6241:16: ( . )
+            // ../org.xtextcon.xbase.smarthome/src-gen/org/xtextcon/xbase/smarthome/parser/antlr/internal/InternalRules.g:6241:18: .
             {
             matchAny(); 
 
@@ -3175,11 +3175,11 @@ public class InternalRulesLexer extends Lexer {
 
     protected DFA19 dfa19 = new DFA19(this);
     static final String DFA19_eotS =
-        "\1\uffff\4\57\1\uffff\1\70\1\73\1\77\1\102\1\106\1\110\1\112\1\114"+
-        "\1\116\1\120\1\122\1\57\1\127\1\132\1\57\1\135\10\uffff\10\57\2"+
-        "\167\1\55\1\uffff\2\55\2\uffff\1\57\1\uffff\4\57\1\u0085\1\uffff"+
+        "\1\uffff\4\57\1\uffff\1\67\1\72\1\75\1\101\1\104\1\110\1\112\1\114"+
+        "\1\116\1\120\1\122\1\124\1\57\1\131\1\134\1\57\10\uffff\10\57\2"+
+        "\167\1\55\1\uffff\2\55\2\uffff\1\57\1\uffff\4\57\1\u0085\3\uffff"+
         "\1\u0087\32\uffff\1\u0089\1\uffff\1\57\1\u008b\1\57\1\u008e\4\uffff"+
-        "\1\u008f\12\uffff\7\57\1\u0097\10\57\2\uffff\1\167\3\uffff\4\57"+
+        "\1\u008f\10\uffff\7\57\1\u0097\10\57\2\uffff\1\167\3\uffff\4\57"+
         "\1\u00a5\1\57\1\u00a7\2\57\5\uffff\1\57\1\uffff\1\57\3\uffff\7\57"+
         "\1\uffff\1\u00b3\3\57\1\u00b7\1\u00b8\1\u00b9\2\57\1\u00bc\1\u00bd"+
         "\1\57\1\u00bf\1\uffff\1\57\1\uffff\1\u00c1\3\57\1\u00c5\6\57\1\uffff"+
@@ -3193,11 +3193,11 @@ public class InternalRulesLexer extends Lexer {
     static final String DFA19_eofS =
         "\u00fc\uffff";
     static final String DFA19_minS =
-        "\1\0\2\150\1\141\1\145\1\uffff\1\75\1\53\1\55\2\52\1\75\1\76\1\75"+
-        "\1\174\1\46\1\75\1\146\2\56\1\163\1\72\10\uffff\1\154\1\164\1\145"+
+        "\1\0\2\150\1\141\1\145\1\uffff\1\72\1\75\1\53\1\55\2\52\1\75\1\76"+
+        "\1\75\1\174\1\46\1\75\1\146\2\56\1\163\10\uffff\1\154\1\164\1\145"+
         "\1\141\1\150\1\141\2\145\2\60\1\44\1\uffff\2\0\2\uffff\1\145\1\uffff"+
-        "\1\145\1\165\1\160\1\156\1\44\1\uffff\1\75\32\uffff\1\75\1\uffff"+
-        "\1\163\1\44\1\160\1\74\4\uffff\1\44\12\uffff\1\163\1\164\1\151\1"+
+        "\1\145\1\165\1\160\1\156\1\44\3\uffff\1\75\32\uffff\1\75\1\uffff"+
+        "\1\163\1\44\1\160\1\74\4\uffff\1\44\10\uffff\1\163\1\164\1\151\1"+
         "\141\1\160\1\156\1\146\1\44\1\162\1\154\1\156\1\151\1\154\1\167"+
         "\1\154\1\164\2\uffff\1\60\3\uffff\2\156\1\157\1\145\1\44\1\145\1"+
         "\44\1\145\1\143\5\uffff\1\164\1\uffff\1\157\3\uffff\2\145\2\164"+
@@ -3212,12 +3212,12 @@ public class InternalRulesLexer extends Lexer {
         "\1\151\2\uffff\1\146\1\44\1\172\1\44\1\uffff\1\145\1\uffff\1\144"+
         "\1\44\1\uffff";
     static final String DFA19_maxS =
-        "\1\uffff\1\150\1\171\1\141\1\145\1\uffff\1\76\1\75\1\76\3\75\1\76"+
-        "\1\75\1\174\1\46\1\75\1\156\1\56\1\72\1\163\1\72\10\uffff\1\170"+
+        "\1\uffff\1\150\1\171\1\141\1\145\1\uffff\1\72\1\76\1\75\1\76\3\75"+
+        "\1\76\1\75\1\174\1\46\1\75\1\156\1\56\1\72\1\163\10\uffff\1\170"+
         "\1\171\2\157\1\150\1\141\1\165\1\145\1\170\1\154\1\172\1\uffff\2"+
-        "\uffff\2\uffff\1\145\1\uffff\1\162\1\171\1\160\1\164\1\172\1\uffff"+
+        "\uffff\2\uffff\1\145\1\uffff\1\162\1\171\1\160\1\164\1\172\3\uffff"+
         "\1\75\32\uffff\1\75\1\uffff\1\163\1\172\1\160\1\74\4\uffff\1\172"+
-        "\12\uffff\1\163\1\164\1\151\1\141\1\160\1\156\1\146\1\172\1\162"+
+        "\10\uffff\1\163\1\164\1\151\1\141\1\160\1\156\1\146\1\172\1\162"+
         "\1\154\1\156\1\151\1\162\1\167\1\154\1\164\2\uffff\1\154\3\uffff"+
         "\2\156\1\157\1\145\1\172\1\145\1\172\1\145\1\143\5\uffff\1\164\1"+
         "\uffff\1\157\3\uffff\2\145\2\164\1\145\1\143\1\141\1\uffff\1\172"+
@@ -3231,49 +3231,49 @@ public class InternalRulesLexer extends Lexer {
         "\uffff\1\156\2\172\1\uffff\1\157\1\uffff\1\156\1\151\2\uffff\1\146"+
         "\3\172\1\uffff\1\145\1\uffff\1\144\1\172\1\uffff";
     static final String DFA19_acceptS =
-        "\5\uffff\1\5\20\uffff\1\51\1\52\1\53\1\54\1\55\1\56\1\57\1\61\13"+
-        "\uffff\1\122\2\uffff\1\126\1\127\1\uffff\1\122\5\uffff\1\5\1\uffff"+
-        "\1\31\1\6\1\7\1\44\1\34\1\10\1\26\1\45\1\35\1\11\1\37\1\36\1\12"+
-        "\1\124\1\125\1\40\1\13\1\41\1\32\1\14\1\16\1\15\1\17\1\60\1\20\1"+
-        "\116\1\uffff\1\42\4\uffff\1\46\1\33\1\50\1\115\1\uffff\1\47\1\65"+
-        "\1\51\1\52\1\53\1\54\1\55\1\56\1\57\1\61\20\uffff\1\117\1\120\1"+
-        "\uffff\1\121\1\123\1\126\11\uffff\1\4\1\23\1\21\1\24\1\22\1\uffff"+
-        "\1\62\1\uffff\1\27\1\30\1\43\7\uffff\1\72\15\uffff\1\111\1\uffff"+
+        "\5\uffff\1\5\20\uffff\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\62\13"+
+        "\uffff\1\122\2\uffff\1\126\1\127\1\uffff\1\122\5\uffff\1\5\1\50"+
+        "\1\6\1\uffff\1\32\1\7\1\10\1\45\1\35\1\11\1\27\1\46\1\36\1\12\1"+
+        "\40\1\37\1\13\1\124\1\125\1\41\1\14\1\42\1\33\1\15\1\17\1\16\1\20"+
+        "\1\61\1\21\1\116\1\uffff\1\43\4\uffff\1\47\1\34\1\51\1\115\1\uffff"+
+        "\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\62\20\uffff\1\117\1\120\1"+
+        "\uffff\1\121\1\123\1\126\11\uffff\1\4\1\24\1\22\1\25\1\23\1\uffff"+
+        "\1\63\1\uffff\1\30\1\31\1\44\7\uffff\1\72\15\uffff\1\111\1\uffff"+
         "\1\3\13\uffff\1\70\3\uffff\1\73\1\74\1\102\2\uffff\1\1\1\2\1\uffff"+
-        "\1\104\1\uffff\1\67\3\uffff\1\63\11\uffff\1\105\1\uffff\1\107\1"+
+        "\1\104\1\uffff\1\67\3\uffff\1\64\11\uffff\1\105\1\uffff\1\107\1"+
         "\uffff\1\114\6\uffff\1\101\2\uffff\1\103\1\uffff\1\71\1\uffff\1"+
-        "\106\1\uffff\1\77\2\uffff\1\64\1\76\3\uffff\1\110\1\uffff\1\75\2"+
-        "\uffff\1\66\1\112\4\uffff\1\100\1\uffff\1\25\2\uffff\1\113";
+        "\106\1\uffff\1\77\2\uffff\1\65\1\76\3\uffff\1\110\1\uffff\1\75\2"+
+        "\uffff\1\66\1\112\4\uffff\1\100\1\uffff\1\26\2\uffff\1\113";
     static final String DFA19_specialS =
-        "\1\0\51\uffff\1\2\1\1\u00d0\uffff}>";
+        "\1\1\51\uffff\1\2\1\0\u00d0\uffff}>";
     static final String[] DFA19_transitionS = {
-            "\11\55\2\54\2\55\1\54\22\55\1\54\1\20\1\52\1\30\1\51\1\13\1"+
-            "\17\1\53\1\26\1\27\1\11\1\7\1\5\1\10\1\22\1\12\1\46\11\47\1"+
-            "\25\1\35\1\14\1\6\1\15\1\23\1\55\26\51\1\1\3\51\1\33\1\55\1"+
-            "\34\1\50\1\51\1\55\1\24\1\4\1\3\1\40\1\36\1\41\2\51\1\21\4\51"+
-            "\1\44\3\51\1\45\1\37\1\2\1\51\1\43\1\42\3\51\1\31\1\16\1\32"+
-            "\uff82\55",
+            "\11\55\2\54\2\55\1\54\22\55\1\54\1\21\1\52\1\30\1\51\1\14\1"+
+            "\20\1\53\1\26\1\27\1\12\1\10\1\5\1\11\1\23\1\13\1\46\11\47\1"+
+            "\6\1\35\1\15\1\7\1\16\1\24\1\55\26\51\1\1\3\51\1\33\1\55\1\34"+
+            "\1\50\1\51\1\55\1\25\1\4\1\3\1\40\1\36\1\41\2\51\1\22\4\51\1"+
+            "\44\3\51\1\45\1\37\1\2\1\51\1\43\1\42\3\51\1\31\1\17\1\32\uff82"+
+            "\55",
             "\1\56",
             "\1\60\11\uffff\1\61\6\uffff\1\62",
             "\1\63",
             "\1\64",
             "",
-            "\1\66\1\67",
-            "\1\72\21\uffff\1\71",
-            "\1\76\17\uffff\1\74\1\75",
-            "\1\101\22\uffff\1\100",
-            "\1\104\4\uffff\1\105\15\uffff\1\103",
-            "\1\107",
+            "\1\66",
+            "\1\70\1\71",
+            "\1\74\21\uffff\1\73",
+            "\1\100\17\uffff\1\76\1\77",
+            "\1\103\22\uffff\1\102",
+            "\1\106\4\uffff\1\107\15\uffff\1\105",
             "\1\111",
             "\1\113",
             "\1\115",
             "\1\117",
             "\1\121",
-            "\1\124\6\uffff\1\125\1\123",
-            "\1\126",
-            "\1\131\13\uffff\1\130",
-            "\1\133",
-            "\1\134",
+            "\1\123",
+            "\1\126\6\uffff\1\127\1\125",
+            "\1\130",
+            "\1\133\13\uffff\1\132",
+            "\1\135",
             "",
             "",
             "",
@@ -3309,6 +3309,8 @@ public class InternalRulesLexer extends Lexer {
             "\1\u0082\4\uffff\1\u0083\1\u0084",
             "\1\57\13\uffff\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32"+
             "\57",
+            "",
+            "",
             "",
             "\1\u0086",
             "",
@@ -3350,8 +3352,6 @@ public class InternalRulesLexer extends Lexer {
             "",
             "\1\57\13\uffff\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32"+
             "\57",
-            "",
-            "",
             "",
             "",
             "",
@@ -3579,6 +3579,16 @@ public class InternalRulesLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA19_43 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA19_43>='\u0000' && LA19_43<='\uFFFF')) ) {s = 122;}
+
+                        else s = 45;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA19_0 = input.LA(1);
 
                         s = -1;
@@ -3592,37 +3602,37 @@ public class InternalRulesLexer extends Lexer {
 
                         else if ( (LA19_0==',') ) {s = 5;}
 
-                        else if ( (LA19_0=='=') ) {s = 6;}
+                        else if ( (LA19_0==':') ) {s = 6;}
 
-                        else if ( (LA19_0=='+') ) {s = 7;}
+                        else if ( (LA19_0=='=') ) {s = 7;}
 
-                        else if ( (LA19_0=='-') ) {s = 8;}
+                        else if ( (LA19_0=='+') ) {s = 8;}
 
-                        else if ( (LA19_0=='*') ) {s = 9;}
+                        else if ( (LA19_0=='-') ) {s = 9;}
 
-                        else if ( (LA19_0=='/') ) {s = 10;}
+                        else if ( (LA19_0=='*') ) {s = 10;}
 
-                        else if ( (LA19_0=='%') ) {s = 11;}
+                        else if ( (LA19_0=='/') ) {s = 11;}
 
-                        else if ( (LA19_0=='<') ) {s = 12;}
+                        else if ( (LA19_0=='%') ) {s = 12;}
 
-                        else if ( (LA19_0=='>') ) {s = 13;}
+                        else if ( (LA19_0=='<') ) {s = 13;}
 
-                        else if ( (LA19_0=='|') ) {s = 14;}
+                        else if ( (LA19_0=='>') ) {s = 14;}
 
-                        else if ( (LA19_0=='&') ) {s = 15;}
+                        else if ( (LA19_0=='|') ) {s = 15;}
 
-                        else if ( (LA19_0=='!') ) {s = 16;}
+                        else if ( (LA19_0=='&') ) {s = 16;}
 
-                        else if ( (LA19_0=='i') ) {s = 17;}
+                        else if ( (LA19_0=='!') ) {s = 17;}
 
-                        else if ( (LA19_0=='.') ) {s = 18;}
+                        else if ( (LA19_0=='i') ) {s = 18;}
 
-                        else if ( (LA19_0=='?') ) {s = 19;}
+                        else if ( (LA19_0=='.') ) {s = 19;}
 
-                        else if ( (LA19_0=='a') ) {s = 20;}
+                        else if ( (LA19_0=='?') ) {s = 20;}
 
-                        else if ( (LA19_0==':') ) {s = 21;}
+                        else if ( (LA19_0=='a') ) {s = 21;}
 
                         else if ( (LA19_0=='(') ) {s = 22;}
 
@@ -3671,16 +3681,6 @@ public class InternalRulesLexer extends Lexer {
                         else if ( ((LA19_0>='\t' && LA19_0<='\n')||LA19_0=='\r'||LA19_0==' ') ) {s = 44;}
 
                         else if ( ((LA19_0>='\u0000' && LA19_0<='\b')||(LA19_0>='\u000B' && LA19_0<='\f')||(LA19_0>='\u000E' && LA19_0<='\u001F')||LA19_0=='@'||LA19_0=='\\'||LA19_0=='`'||(LA19_0>='~' && LA19_0<='\uFFFF')) ) {s = 45;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA19_43 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA19_43>='\u0000' && LA19_43<='\uFFFF')) ) {s = 122;}
-
-                        else s = 45;
 
                         if ( s>=0 ) return s;
                         break;

@@ -18,6 +18,7 @@ import org.xtextcon.xbase.smarthome.rules.Rule;
 import org.xtextcon.xbase.smarthome.rules.RulesFactory;
 import org.xtextcon.xbase.smarthome.rules.RulesPackage;
 import org.xtextcon.xbase.smarthome.rules.State;
+import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +62,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
    * @generated
    */
   private EClass stateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass timeLiteralEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -183,9 +191,19 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRule_Then()
+  public EReference getRule_Time()
   {
     return (EReference)ruleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRule_Then()
+  {
+    return (EReference)ruleEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -243,6 +261,46 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTimeLiteral()
+  {
+    return timeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTimeLiteral_Hour()
+  {
+    return (EAttribute)timeLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTimeLiteral_Min()
+  {
+    return (EAttribute)timeLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTimeLiteral_Sec()
+  {
+    return (EAttribute)timeLiteralEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RulesFactory getRulesFactory()
   {
     return (RulesFactory)getEFactoryInstance();
@@ -275,6 +333,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
 
     ruleEClass = createEClass(RULE);
     createEReference(ruleEClass, RULE__WHEN);
+    createEReference(ruleEClass, RULE__TIME);
     createEReference(ruleEClass, RULE__THEN);
 
     deviceEClass = createEClass(DEVICE);
@@ -283,6 +342,11 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
 
     stateEClass = createEClass(STATE);
     createEAttribute(stateEClass, STATE__NAME);
+
+    timeLiteralEClass = createEClass(TIME_LITERAL);
+    createEAttribute(timeLiteralEClass, TIME_LITERAL__HOUR);
+    createEAttribute(timeLiteralEClass, TIME_LITERAL__MIN);
+    createEAttribute(timeLiteralEClass, TIME_LITERAL__SEC);
   }
 
   /**
@@ -328,6 +392,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRule_When(), this.getState(), null, "when", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRule_Time(), this.getTimeLiteral(), null, "time", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRule_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(deviceEClass, Device.class, "Device", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -336,6 +401,11 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(timeLiteralEClass, TimeLiteral.class, "TimeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTimeLiteral_Hour(), ecorePackage.getEInt(), "hour", null, 0, 1, TimeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTimeLiteral_Min(), ecorePackage.getEInt(), "min", null, 0, 1, TimeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTimeLiteral_Sec(), ecorePackage.getEInt(), "sec", null, 0, 1, TimeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

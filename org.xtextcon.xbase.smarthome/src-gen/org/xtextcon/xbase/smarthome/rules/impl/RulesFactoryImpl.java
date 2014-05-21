@@ -69,6 +69,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory
       case RulesPackage.RULE: return createRule();
       case RulesPackage.DEVICE: return createDevice();
       case RulesPackage.STATE: return createState();
+      case RulesPackage.TIME_LITERAL: return createTimeLiteral();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -127,6 +128,17 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory
   {
     StateImpl state = new StateImpl();
     return state;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TimeLiteral createTimeLiteral()
+  {
+    TimeLiteralImpl timeLiteral = new TimeLiteralImpl();
+    return timeLiteral;
   }
 
   /**

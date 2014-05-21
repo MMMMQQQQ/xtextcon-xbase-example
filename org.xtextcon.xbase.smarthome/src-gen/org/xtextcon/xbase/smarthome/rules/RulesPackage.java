@@ -123,13 +123,22 @@ public interface RulesPackage extends EPackage
   int RULE__WHEN = DECLARATION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Time</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE__TIME = DECLARATION_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Then</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RULE__THEN = DECLARATION_FEATURE_COUNT + 1;
+  int RULE__THEN = DECLARATION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Rule</em>' class.
@@ -138,7 +147,7 @@ public interface RulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 2;
+  int RULE_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtextcon.xbase.smarthome.rules.impl.DeviceImpl <em>Device</em>}' class.
@@ -205,6 +214,52 @@ public interface RulesPackage extends EPackage
    */
   int STATE_FEATURE_COUNT = 1;
 
+  /**
+   * The meta object id for the '{@link org.xtextcon.xbase.smarthome.rules.impl.TimeLiteralImpl <em>Time Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtextcon.xbase.smarthome.rules.impl.TimeLiteralImpl
+   * @see org.xtextcon.xbase.smarthome.rules.impl.RulesPackageImpl#getTimeLiteral()
+   * @generated
+   */
+  int TIME_LITERAL = 5;
+
+  /**
+   * The feature id for the '<em><b>Hour</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_LITERAL__HOUR = 0;
+
+  /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_LITERAL__MIN = 1;
+
+  /**
+   * The feature id for the '<em><b>Sec</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_LITERAL__SEC = 2;
+
+  /**
+   * The number of structural features of the '<em>Time Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_LITERAL_FEATURE_COUNT = 3;
+
 
   /**
    * Returns the meta object for class '{@link org.xtextcon.xbase.smarthome.rules.Model <em>Model</em>}'.
@@ -257,6 +312,17 @@ public interface RulesPackage extends EPackage
    * @generated
    */
   EReference getRule_When();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtextcon.xbase.smarthome.rules.Rule#getTime <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Time</em>'.
+   * @see org.xtextcon.xbase.smarthome.rules.Rule#getTime()
+   * @see #getRule()
+   * @generated
+   */
+  EReference getRule_Time();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtextcon.xbase.smarthome.rules.Rule#getThen <em>Then</em>}'.
@@ -321,6 +387,49 @@ public interface RulesPackage extends EPackage
    * @generated
    */
   EAttribute getState_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtextcon.xbase.smarthome.rules.TimeLiteral <em>Time Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Time Literal</em>'.
+   * @see org.xtextcon.xbase.smarthome.rules.TimeLiteral
+   * @generated
+   */
+  EClass getTimeLiteral();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtextcon.xbase.smarthome.rules.TimeLiteral#getHour <em>Hour</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Hour</em>'.
+   * @see org.xtextcon.xbase.smarthome.rules.TimeLiteral#getHour()
+   * @see #getTimeLiteral()
+   * @generated
+   */
+  EAttribute getTimeLiteral_Hour();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtextcon.xbase.smarthome.rules.TimeLiteral#getMin <em>Min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min</em>'.
+   * @see org.xtextcon.xbase.smarthome.rules.TimeLiteral#getMin()
+   * @see #getTimeLiteral()
+   * @generated
+   */
+  EAttribute getTimeLiteral_Min();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtextcon.xbase.smarthome.rules.TimeLiteral#getSec <em>Sec</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sec</em>'.
+   * @see org.xtextcon.xbase.smarthome.rules.TimeLiteral#getSec()
+   * @see #getTimeLiteral()
+   * @generated
+   */
+  EAttribute getTimeLiteral_Sec();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -392,6 +501,14 @@ public interface RulesPackage extends EPackage
     EReference RULE__WHEN = eINSTANCE.getRule_When();
 
     /**
+     * The meta object literal for the '<em><b>Time</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RULE__TIME = eINSTANCE.getRule_Time();
+
+    /**
      * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -442,6 +559,40 @@ public interface RulesPackage extends EPackage
      * @generated
      */
     EAttribute STATE__NAME = eINSTANCE.getState_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtextcon.xbase.smarthome.rules.impl.TimeLiteralImpl <em>Time Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtextcon.xbase.smarthome.rules.impl.TimeLiteralImpl
+     * @see org.xtextcon.xbase.smarthome.rules.impl.RulesPackageImpl#getTimeLiteral()
+     * @generated
+     */
+    EClass TIME_LITERAL = eINSTANCE.getTimeLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Hour</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME_LITERAL__HOUR = eINSTANCE.getTimeLiteral_Hour();
+
+    /**
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME_LITERAL__MIN = eINSTANCE.getTimeLiteral_Min();
+
+    /**
+     * The meta object literal for the '<em><b>Sec</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME_LITERAL__SEC = eINSTANCE.getTimeLiteral_Sec();
 
   }
 

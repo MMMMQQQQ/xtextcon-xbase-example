@@ -38,6 +38,7 @@ public class RulesParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
+					put(grammarAccess.getRuleAccess().getAlternatives_1(), "rule__Rule__Alternatives_1");
 					put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 					put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 					put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -80,6 +81,8 @@ public class RulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getDeviceAccess().getGroup(), "rule__Device__Group__0");
 					put(grammarAccess.getDeviceAccess().getGroup_4(), "rule__Device__Group_4__0");
+					put(grammarAccess.getTimeLiteralAccess().getGroup(), "rule__TimeLiteral__Group__0");
+					put(grammarAccess.getTimeLiteralAccess().getGroup_3(), "rule__TimeLiteral__Group_3__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1_1(), "rule__XAssignment__Group_1_1__0");
@@ -252,12 +255,16 @@ public class RulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 					put(grammarAccess.getModelAccess().getDeclarationsAssignment(), "rule__Model__DeclarationsAssignment");
-					put(grammarAccess.getRuleAccess().getWhenAssignment_1(), "rule__Rule__WhenAssignment_1");
+					put(grammarAccess.getRuleAccess().getWhenAssignment_1_0(), "rule__Rule__WhenAssignment_1_0");
+					put(grammarAccess.getRuleAccess().getTimeAssignment_1_1(), "rule__Rule__TimeAssignment_1_1");
 					put(grammarAccess.getRuleAccess().getThenAssignment_3(), "rule__Rule__ThenAssignment_3");
 					put(grammarAccess.getDeviceAccess().getNameAssignment_0(), "rule__Device__NameAssignment_0");
 					put(grammarAccess.getDeviceAccess().getStatesAssignment_3(), "rule__Device__StatesAssignment_3");
 					put(grammarAccess.getDeviceAccess().getStatesAssignment_4_1(), "rule__Device__StatesAssignment_4_1");
 					put(grammarAccess.getStateAccess().getNameAssignment(), "rule__State__NameAssignment");
+					put(grammarAccess.getTimeLiteralAccess().getHourAssignment_0(), "rule__TimeLiteral__HourAssignment_0");
+					put(grammarAccess.getTimeLiteralAccess().getMinAssignment_2(), "rule__TimeLiteral__MinAssignment_2");
+					put(grammarAccess.getTimeLiteralAccess().getSecAssignment_3_1(), "rule__TimeLiteral__SecAssignment_3_1");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

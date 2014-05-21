@@ -100,6 +100,11 @@ public class RulesAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
+      public Adapter caseTimeLiteral(TimeLiteral object)
+      {
+        return createTimeLiteralAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -192,6 +197,21 @@ public class RulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtextcon.xbase.smarthome.rules.TimeLiteral <em>Time Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtextcon.xbase.smarthome.rules.TimeLiteral
+   * @generated
+   */
+  public Adapter createTimeLiteralAdapter()
   {
     return null;
   }
