@@ -13,6 +13,9 @@ import org.xtextcon.xbase.smarthome.rules.Model;
 
 @SuppressWarnings("all")
 public class SmarthomeGenerator extends JvmModelGenerator {
+  /**
+   * Generates a properties with the messages that are necessary to run the simulator.
+   */
   protected void _internalDoGenerate(final Model model, final IFileSystemAccess fsa) {
     Resource _eResource = model.eResource();
     URI _uRI = _eResource.getURI();

@@ -26,12 +26,24 @@ import java.util.ResourceBundle
  */
 class RulesJvmModelInferrer extends AbstractModelInferrer {
 	
+	/**
+	 * Standard service to create JVM types, e.g. classes, fields and methods
+	 */
 	@Inject extension JvmTypesBuilder
 	
+	/**
+	 * Utility to create type references, e.g. used to produce the signature {@code trigger(Enum<?>)}
+	 */
 	@Inject extension TypeReferences
 
+	/**
+	 * Type inferencer. May only be used to compute the body of a method or the initializer of a field.
+	 */
 	@Inject IBatchTypeResolver batchTypeResolver
 	
+	/**
+	 * Infers a couple of classes from a model, e.g. enums for the devices and a state machines for the simulator.
+	 */
 	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		val packageName = "my.home.is.my.castle"
 		model.declarations.filter(Device).forEach [ device |
@@ -56,6 +68,10 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
+	/**
+	 * Creates a field for the generated resource bundle (see {@link SmarthomeGenerator}) and a getter
+	 * to obtain the strings from that bundle.
+	 */
 	def initializeResourceBundle(JvmGenericType type, Model model, String bundleName) {
 		type.members += model.toField('RESOURCE_BUNDLE', model.newTypeRef(ResourceBundle)) [
 			static = true
@@ -74,10 +90,18 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
+	/**
+	 * Produces the logic in the simulator that handles time events, e.g. boolean utility
+	 * to compare two instances of {@link Calendar} by the time of the day, and the necessary
+	 * trigger code. One could imagine that this utility could also be implemented in a super type
+	 * of the simulator.
+	 */
 	def initializeTimeEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
+		// make this type a TimeDependent type
 		if (!rules.isEmpty) {
 			type.superTypes += model.newTypeRef(TimeDependent)
 		}
+		// The dispatcher that'll trigger a certain rule if it matches the given time
 		type.members += model.toMethod('trigger', model.newTypeRef(Void.TYPE)) [
 			parameters += model.toParameter("time", model.newTypeRef(Calendar))
 			body = '''
@@ -93,6 +117,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 				«ENDFOR»
 			'''
 		]
+		// The query for equal times
 		type.members += model.toMethod('isTime', model.newTypeRef(boolean)) [
 			parameters += model.toParameter("c1", model.newTypeRef(Calendar))
 			parameters += model.toParameter("c2", model.newTypeRef(Calendar))
@@ -102,7 +127,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 				  && c1.get(«Calendar».MINUTE) == c2.get(«Calendar».MINUTE);
 			'''
 		]
-		
+		// Add the getters for the time when the rule should fire.
 		for (rule : rules) {
 			type.members += rule.toMethod(rule.timeMethod, rule.time.inferredType) [
 				body = rule.time
@@ -110,6 +135,10 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
+	/**
+	 * Add the dispatcher for all state-change events, the dispatcher for simulated user
+	 * interaction like {@code Window open}.
+	 */
 	def initializeStateEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
 		type.members += model.toMethod('trigger', model.newTypeRef(Void.TYPE)) [
 			parameters += model.toParameter("event", model.newTypeRef(Enum, wildCardExtends(model.newTypeRef(Object))))
@@ -129,6 +158,9 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
+	/**
+	 * Creates the actions that are triggered by the available rules.
+	 */
 	def initializeActions(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
 		for (rule : rules.filter[then != null]) {
 			type.members += rule.toMethod(rule.thenMethod, rule.then.inferredType) [
@@ -137,6 +169,10 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		}		
 	}
 	
+	/**
+	 * Add the {@code run()} method for this state machine. It implements the parsing of the user
+	 * input and the dispatching of the simulated events. Thereby it complements the time based events.
+	 */
 	def initializeRuleEngine(JvmGenericType type, Model model, Iterable<? extends Rule> stateRules, Iterable<? extends Rule> timeRules) {
 		type.members += model.toMethod("run", model.newTypeRef(Void.TYPE)) [
 			body = '''
@@ -186,6 +222,9 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
+	/**
+	 * Create a java main method that will call the {@code run()} function of this class.
+	 */
 	def initializeMain(JvmGenericType type, Model model) {
 		type.members += model.toMethod('main', model.newTypeRef(Void.TYPE)) [
 			parameters += model.toParameter("args", model.newTypeRef(String).addArrayTypeDimension)
@@ -196,6 +235,10 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
+	/**
+	 * Query the return type of the rule's action. May only be used during the body processing.
+	 * That means, it cannot be queried before the model was linked but only at code generation time.
+	 */
 	def boolean triggersEvent(Rule rule) {
 		val types = batchTypeResolver.resolveTypes(rule.then)
 		val returnType = types.getReturnType(rule.then)

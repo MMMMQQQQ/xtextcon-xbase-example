@@ -52,17 +52,29 @@ import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
  */
 @SuppressWarnings("all")
 public class RulesJvmModelInferrer extends AbstractModelInferrer {
+  /**
+   * Standard service to create JVM types, e.g. classes, fields and methods
+   */
   @Inject
   @Extension
   private JvmTypesBuilder _jvmTypesBuilder;
   
+  /**
+   * Utility to create type references, e.g. used to produce the signature {@code trigger(Enum<?>)}
+   */
   @Inject
   @Extension
   private TypeReferences _typeReferences;
   
+  /**
+   * Type inferencer. May only be used to compute the body of a method or the initializer of a field.
+   */
   @Inject
   private IBatchTypeResolver batchTypeResolver;
   
+  /**
+   * Infers a couple of classes from a model, e.g. enums for the devices and a state machines for the simulator.
+   */
   protected void _infer(final Model model, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     final String packageName = "my.home.is.my.castle";
     EList<Declaration> _declarations = model.getDeclarations();
@@ -143,6 +155,10 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
+  /**
+   * Creates a field for the generated resource bundle (see {@link SmarthomeGenerator}) and a getter
+   * to obtain the strings from that bundle.
+   */
   public boolean initializeResourceBundle(final JvmGenericType type, final Model model, final String bundleName) {
     boolean _xblockexpression = false;
     {
@@ -193,6 +209,12 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     return _xblockexpression;
   }
   
+  /**
+   * Produces the logic in the simulator that handles time events, e.g. boolean utility
+   * to compare two instances of {@link Calendar} by the time of the day, and the necessary
+   * trigger code. One could imagine that this utility could also be implemented in a super type
+   * of the simulator.
+   */
   public void initializeTimeEvents(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
     boolean _isEmpty = IterableExtensions.isEmpty(rules);
     boolean _not = (!_isEmpty);
@@ -303,6 +325,10 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
+  /**
+   * Add the dispatcher for all state-change events, the dispatcher for simulated user
+   * interaction like {@code Window open}.
+   */
   public boolean initializeStateEvents(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
     EList<JvmMember> _members = type.getMembers();
     JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
@@ -364,6 +390,9 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
   }
   
+  /**
+   * Creates the actions that are triggered by the available rules.
+   */
   public void initializeActions(final JvmGenericType type, final Model model, final Iterable<? extends Rule> rules) {
     final Function1<Rule, Boolean> _function = new Function1<Rule, Boolean>() {
       public Boolean apply(final Rule it) {
@@ -388,6 +417,10 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
+  /**
+   * Add the {@code run()} method for this state machine. It implements the parsing of the user
+   * input and the dispatching of the simulated events. Thereby it complements the time based events.
+   */
   public boolean initializeRuleEngine(final JvmGenericType type, final Model model, final Iterable<? extends Rule> stateRules, final Iterable<? extends Rule> timeRules) {
     EList<JvmMember> _members = type.getMembers();
     JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
@@ -588,6 +621,9 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
   }
   
+  /**
+   * Create a java main method that will call the {@code run()} function of this class.
+   */
   public boolean initializeMain(final JvmGenericType type, final Model model) {
     EList<JvmMember> _members = type.getMembers();
     JvmTypeReference _newTypeRef = this._jvmTypesBuilder.newTypeRef(model, Void.TYPE);
@@ -616,6 +652,10 @@ public class RulesJvmModelInferrer extends AbstractModelInferrer {
     return this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
   }
   
+  /**
+   * Query the return type of the rule's action. May only be used during the body processing.
+   * That means, it cannot be queried before the model was linked but only at code generation time.
+   */
   public boolean triggersEvent(final Rule rule) {
     XExpression _then = rule.getThen();
     final IResolvedTypes types = this.batchTypeResolver.resolveTypes(_then);

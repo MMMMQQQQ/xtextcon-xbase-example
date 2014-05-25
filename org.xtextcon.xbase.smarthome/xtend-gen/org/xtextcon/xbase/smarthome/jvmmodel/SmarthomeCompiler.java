@@ -9,6 +9,10 @@ import org.xtextcon.xbase.smarthome.rules.TimeLiteral;
 
 @SuppressWarnings("all")
 public class SmarthomeCompiler extends XbaseCompiler {
+  /**
+   * Make sure that the compiler provides a proper statement context when a time literal
+   * should be compiled in an expression context.
+   */
   protected boolean canCompileToJavaExpression(final XExpression expression, final ITreeAppendable appendable) {
     if ((expression instanceof TimeLiteral)) {
       return false;
@@ -16,6 +20,11 @@ public class SmarthomeCompiler extends XbaseCompiler {
     return super.canCompileToJavaExpression(expression, appendable);
   }
   
+  /**
+   * Dispatch according to the concrete expression type.
+   * This is used if the expression should be compiled in an expression context, e.g.
+   * in a parameter list.
+   */
   public void internalToConvertedExpression(final XExpression obj, final ITreeAppendable appendable) {
     if ((obj instanceof TimeLiteral)) {
       this.toJavaExpression(((TimeLiteral)obj), appendable);
@@ -30,6 +39,10 @@ public class SmarthomeCompiler extends XbaseCompiler {
     return _trace.append(_varName);
   }
   
+  /**
+   * Dispatch according to the concrete expression type.
+   * This is used if the expression should be compiled in a statement context.
+   */
   public void doInternalToJavaStatement(final XExpression obj, final ITreeAppendable appendable, final boolean isReferenced) {
     if ((obj instanceof TimeLiteral)) {
       this.toJavaStatement(((TimeLiteral)obj), appendable, isReferenced);

@@ -3,7 +3,6 @@ grammar org.xtextcon.xbase.smarthome.Rules with org.eclipse.xtext.xbase.Xbase
 generate rules "http://www.xtextcon.org/xbase/smarthome/Rules"
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 
-
 Model:
 	declarations+=Declaration*;
 
@@ -12,7 +11,8 @@ Declaration:
 ;
 
 Rule:
-	'When' 
+	'When'
+	// simplified, in practice we'd like to allow expressions here, too
 	(when=[State|QualifiedName] | time=TimeLiteral) 
 	'then' then=XExpression 
 ;
@@ -37,5 +37,6 @@ XLiteral returns xbase::XExpression:
 ;
 
 TimeLiteral:
+	// the predicates convince Antlr that this is really a time literal
 	=>(hour=INT ':') min=INT (=>':' sec=INT)?
 ;

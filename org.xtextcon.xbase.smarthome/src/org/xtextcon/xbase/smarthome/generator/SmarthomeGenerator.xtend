@@ -6,6 +6,9 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 
 class SmarthomeGenerator extends JvmModelGenerator {
 	
+	/**
+	 * Generates a properties with the messages that are necessary to run the simulator.
+	 */
 	def dispatch void internalDoGenerate(Model model, IFileSystemAccess fsa) {
 		val resourceName = "my/home/is/my/castle/" + model.eResource.URI.trimFileExtension.lastSegment.toFirstUpper+"RuleEngine.properties"
 		fsa.generateFile(resourceName, '''
