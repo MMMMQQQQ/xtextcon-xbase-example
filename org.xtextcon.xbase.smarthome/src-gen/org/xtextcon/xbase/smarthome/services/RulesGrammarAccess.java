@@ -70,16 +70,19 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cThenXExpressionParserRuleCall_3_0 = (RuleCall)cThenAssignment_3.eContents().get(0);
 		
 		//Rule:
-		//	"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression;
+		//	"When" (when=[State|QualifiedName] // simplified, in practice we'd like to allow expressions here, too
+		//	| time=TimeLiteral) "then" then=XExpression;
 		public ParserRule getRule() { return rule; }
 
-		//"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression
+		//"When" (when=[State|QualifiedName] // simplified, in practice we'd like to allow expressions here, too
+		//| time=TimeLiteral) "then" then=XExpression
 		public Group getGroup() { return cGroup; }
 
 		//"When"
 		public Keyword getWhenKeyword_0() { return cWhenKeyword_0; }
 
-		//when=[State|QualifiedName] | time=TimeLiteral
+		//when=[State|QualifiedName] // simplified, in practice we'd like to allow expressions here, too
+		//| time=TimeLiteral
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//when=[State|QualifiedName]
@@ -236,13 +239,15 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSecAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cSecINTTerminalRuleCall_2_1_0 = (RuleCall)cSecAssignment_2_1.eContents().get(0);
 		
-		//TimeLiteral:
+		//TimeLiteral: // the predicates convince Antlr that this is really a time literal
 		//	=> (hour=INT ":") min=INT (":" sec=INT)?;
 		public ParserRule getRule() { return rule; }
 
+		//// the predicates convince Antlr that this is really a time literal
 		//=> (hour=INT ":") min=INT (":" sec=INT)?
 		public Group getGroup() { return cGroup; }
 
+		//// the predicates convince Antlr that this is really a time literal
 		//=> (hour=INT ":")
 		public Group getGroup_0() { return cGroup_0; }
 
@@ -278,23 +283,30 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private ModelElements pModel;
-	private DeclarationElements pDeclaration;
-	private RuleElements pRule;
-	private DeviceElements pDevice;
-	private StateElements pState;
-	private XLiteralElements pXLiteral;
-	private TimeLiteralElements pTimeLiteral;
+	private final ModelElements pModel;
+	private final DeclarationElements pDeclaration;
+	private final RuleElements pRule;
+	private final DeviceElements pDevice;
+	private final StateElements pState;
+	private final XLiteralElements pXLiteral;
+	private final TimeLiteralElements pTimeLiteral;
 	
 	private final Grammar grammar;
 
-	private XbaseGrammarAccess gaXbase;
+	private final XbaseGrammarAccess gaXbase;
 
 	@Inject
 	public RulesGrammarAccess(GrammarProvider grammarProvider,
 		XbaseGrammarAccess gaXbase) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaXbase = gaXbase;
+		this.pModel = new ModelElements();
+		this.pDeclaration = new DeclarationElements();
+		this.pRule = new RuleElements();
+		this.pDevice = new DeviceElements();
+		this.pState = new StateElements();
+		this.pXLiteral = new XLiteralElements();
+		this.pTimeLiteral = new TimeLiteralElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -327,7 +339,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	//Model:
 	//	declarations+=Declaration*;
 	public ModelElements getModelAccess() {
-		return (pModel != null) ? pModel : (pModel = new ModelElements());
+		return pModel;
 	}
 	
 	public ParserRule getModelRule() {
@@ -337,7 +349,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	//Declaration:
 	//	Device | Rule;
 	public DeclarationElements getDeclarationAccess() {
-		return (pDeclaration != null) ? pDeclaration : (pDeclaration = new DeclarationElements());
+		return pDeclaration;
 	}
 	
 	public ParserRule getDeclarationRule() {
@@ -345,9 +357,10 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Rule:
-	//	"When" (when=[State|QualifiedName] | time=TimeLiteral) "then" then=XExpression;
+	//	"When" (when=[State|QualifiedName] // simplified, in practice we'd like to allow expressions here, too
+	//	| time=TimeLiteral) "then" then=XExpression;
 	public RuleElements getRuleAccess() {
-		return (pRule != null) ? pRule : (pRule = new RuleElements());
+		return pRule;
 	}
 	
 	public ParserRule getRuleRule() {
@@ -357,7 +370,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	//Device:
 	//	name=ID "can" "be" states+=State ("," states+=State)*;
 	public DeviceElements getDeviceAccess() {
-		return (pDevice != null) ? pDevice : (pDevice = new DeviceElements());
+		return pDevice;
 	}
 	
 	public ParserRule getDeviceRule() {
@@ -367,7 +380,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	//State:
 	//	name=ID;
 	public StateElements getStateAccess() {
-		return (pState != null) ? pState : (pState = new StateElements());
+		return pState;
 	}
 	
 	public ParserRule getStateRule() {
@@ -378,17 +391,17 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	//	TimeLiteral | XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral |
 	//	XTypeLiteral;
 	public XLiteralElements getXLiteralAccess() {
-		return (pXLiteral != null) ? pXLiteral : (pXLiteral = new XLiteralElements());
+		return pXLiteral;
 	}
 	
 	public ParserRule getXLiteralRule() {
 		return getXLiteralAccess().getRule();
 	}
 
-	//TimeLiteral:
+	//TimeLiteral: // the predicates convince Antlr that this is really a time literal
 	//	=> (hour=INT ":") min=INT (":" sec=INT)?;
 	public TimeLiteralElements getTimeLiteralAccess() {
-		return (pTimeLiteral != null) ? pTimeLiteral : (pTimeLiteral = new TimeLiteralElements());
+		return pTimeLiteral;
 	}
 	
 	public ParserRule getTimeLiteralRule() {
@@ -757,7 +770,7 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XCasePart:
-	//	{XCasePart} typeGuard=JvmTypeReference? ("case" case=XExpression)? (":" then=XExpression | ",");
+	//	{XCasePart} typeGuard=JvmTypeReference? ("case" case=XExpression)? (":" then=XExpression | fallThrough?=",");
 	public XbaseGrammarAccess.XCasePartElements getXCasePartAccess() {
 		return gaXbase.getXCasePartAccess();
 	}
@@ -1089,8 +1102,9 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmParameterizedTypeReference:
-	//	type=[JvmType|QualifiedName] ("<" arguments+=JvmArgumentTypeReference ("," arguments+=JvmArgumentTypeReference)*
-	//	">")?;
+	//	type=[JvmType|QualifiedName] ("<" arguments+=JvmArgumentTypeReference ("," arguments+=JvmArgumentTypeReference)* ">"
+	//	(=> ({JvmInnerTypeReference.outer=current} ".") type=[JvmType|ValidID] ("<" arguments+=JvmArgumentTypeReference (","
+	//	arguments+=JvmArgumentTypeReference)* ">")?)*)?;
 	public XtypeGrammarAccess.JvmParameterizedTypeReferenceElements getJvmParameterizedTypeReferenceAccess() {
 		return gaXbase.getJvmParameterizedTypeReferenceAccess();
 	}
@@ -1110,7 +1124,8 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmWildcardTypeReference:
-	//	{JvmWildcardTypeReference} "?" (constraints+=JvmUpperBound | constraints+=JvmLowerBound)?;
+	//	{JvmWildcardTypeReference} "?" (constraints+=JvmUpperBound constraints+=JvmUpperBoundAnded* |
+	//	constraints+=JvmLowerBound constraints+=JvmLowerBoundAnded*)?;
 	public XtypeGrammarAccess.JvmWildcardTypeReferenceElements getJvmWildcardTypeReferenceAccess() {
 		return gaXbase.getJvmWildcardTypeReferenceAccess();
 	}
@@ -1147,6 +1162,16 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getJvmLowerBoundRule() {
 		return getJvmLowerBoundAccess().getRule();
+	}
+
+	//JvmLowerBoundAnded returns JvmLowerBound:
+	//	"&" typeReference=JvmTypeReference;
+	public XtypeGrammarAccess.JvmLowerBoundAndedElements getJvmLowerBoundAndedAccess() {
+		return gaXbase.getJvmLowerBoundAndedAccess();
+	}
+	
+	public ParserRule getJvmLowerBoundAndedRule() {
+		return getJvmLowerBoundAndedAccess().getRule();
 	}
 
 	//JvmTypeParameter:
@@ -1218,8 +1243,8 @@ public class RulesGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\"" ("\\" . / * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\""))* "\""? | "\'" ("\\" .
+	//	/ * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\'"))* "\'"?;
 	public TerminalRule getSTRINGRule() {
 		return gaXbase.getSTRINGRule();
 	} 

@@ -1,22 +1,22 @@
 package org.xtextcon.xbase.smarthome.jvmmodel
 
 import com.google.inject.Inject
+import java.util.Calendar
+import java.util.ResourceBundle
+import java.util.Scanner
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.xtextcon.xbase.smarthome.rules.Model
 import org.eclipse.xtext.xbase.typesystem.IBatchTypeResolver
-import org.xtextcon.xbase.smarthome.rules.Rule
-import org.xtextcon.xbase.smarthome.rules.Device
-import org.xtextcon.xbase.smarthome.rules.State
-import org.eclipse.xtext.common.types.JvmGenericType
-import java.util.Scanner
-import org.eclipse.xtext.common.types.util.TypeReferences
-import org.eclipse.xtext.common.types.JvmVisibility
-import java.util.Calendar
-import org.xtextcon.xbase.smarthome.lib.TimeDependent
+import org.xtextcon.xbase.smarthome.generator.SmarthomeGenerator
 import org.xtextcon.xbase.smarthome.lib.Simulator
-import java.util.ResourceBundle
+import org.xtextcon.xbase.smarthome.lib.TimeDependent
+import org.xtextcon.xbase.smarthome.rules.Device
+import org.xtextcon.xbase.smarthome.rules.Model
+import org.xtextcon.xbase.smarthome.rules.Rule
+import org.xtextcon.xbase.smarthome.rules.State
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -32,20 +32,16 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension JvmTypesBuilder
 	
 	/**
-	 * Utility to create type references, e.g. used to produce the signature {@code trigger(Enum<?>)}
-	 */
-	@Inject extension TypeReferences
-
-	/**
 	 * Type inferencer. May only be used to compute the body of a method or the initializer of a field.
 	 */
 	@Inject IBatchTypeResolver batchTypeResolver
+
+	val packageName = "my.home.is.my.castle"
 	
 	/**
 	 * Infers a couple of classes from a model, e.g. enums for the devices and a state machines for the simulator.
 	 */
 	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		val packageName = "my.home.is.my.castle"
 		model.declarations.filter(Device).forEach [ device |
 			acceptor.accept(device.toEnumerationType(packageName+"."+device.name) [
 				for (state : device.states) {
@@ -55,17 +51,22 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 		]
 		val rules = model.declarations.filter(Rule)
 		if (!rules.empty) {
-			val machineName = packageName+"."+model.eResource.URI.trimFileExtension.lastSegment.toFirstUpper+"RuleEngine"
-			acceptor.accept(model.toClass(machineName))
-				.initializeLater([
-					initializeResourceBundle(model, machineName)
-					initializeTimeEvents(model, rules.filter[time != null])
-					initializeStateEvents(model, rules.filter[when != null])
-					initializeRuleEngine(model, rules.filter[when != null], rules.filter[time != null])
-					initializeActions(model, rules)
-					initializeMain(model)
-				])
+			acceptor.accept(model.toClass(model.machineName)) [
+				initializeResourceBundle(model, model.machineName)
+				initializeTimeEvents(model, rules.filter[time != null])
+				initializeStateEvents(model, rules.filter[when != null])
+				initializeRuleEngine(model, rules.filter[when != null], rules.filter[time != null])
+				initializeActions(model, rules)
+				initializeMain(model)
+			]
 		}
+	}
+	
+	/**
+	 * Compute the state machine's name from the given model
+	 */
+	private def getMachineName(Model model) {
+		packageName+"."+model.eResource.URI.trimFileExtension.lastSegment.toFirstUpper+"RuleEngine"
 	}
 	
 	/**
@@ -73,15 +74,15 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	 * to obtain the strings from that bundle.
 	 */
 	def initializeResourceBundle(JvmGenericType type, Model model, String bundleName) {
-		type.members += model.toField('RESOURCE_BUNDLE', model.newTypeRef(ResourceBundle)) [
+		type.members += model.toField('RESOURCE_BUNDLE', ResourceBundle.typeRef) [
 			static = true
 			final = true
 			initializer = '''
 				«ResourceBundle».getBundle("«bundleName»");
 			'''
 		]
-		type.members += model.toMethod('localize', model.newTypeRef(String)) [
-			parameters += model.toParameter('key', model.newTypeRef(String))
+		type.members += model.toMethod('localize', String.typeRef) [
+			parameters += model.toParameter('key', String.typeRef)
 			visibility = JvmVisibility.PRIVATE
 			static = true
 			body = '''
@@ -99,11 +100,11 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	def initializeTimeEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
 		// make this type a TimeDependent type
 		if (!rules.isEmpty) {
-			type.superTypes += model.newTypeRef(TimeDependent)
+			type.superTypes += TimeDependent.typeRef
 		}
 		// The dispatcher that'll trigger a certain rule if it matches the given time
-		type.members += model.toMethod('trigger', model.newTypeRef(Void.TYPE)) [
-			parameters += model.toParameter("time", model.newTypeRef(Calendar))
+		type.members += model.toMethod('trigger', void.typeRef) [
+			parameters += model.toParameter("time", Calendar.typeRef)
 			body = '''
 				«FOR rule : rules»
 					if (isTime(time, «rule.timeMethod»())) {
@@ -118,9 +119,9 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 			'''
 		]
 		// The query for equal times
-		type.members += model.toMethod('isTime', model.newTypeRef(boolean)) [
-			parameters += model.toParameter("c1", model.newTypeRef(Calendar))
-			parameters += model.toParameter("c2", model.newTypeRef(Calendar))
+		type.members += model.toMethod('isTime', boolean.typeRef) [
+			parameters += model.toParameter("c1", Calendar.typeRef)
+			parameters += model.toParameter("c2", Calendar.typeRef)
 			visibility = JvmVisibility.PRIVATE
 			body = '''
 				return c1.get(«Calendar».HOUR_OF_DAY) == c2.get(«Calendar».HOUR_OF_DAY)
@@ -140,8 +141,8 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	 * interaction like {@code Window open}.
 	 */
 	def initializeStateEvents(JvmGenericType type, Model model, Iterable<? extends Rule> rules) {
-		type.members += model.toMethod('trigger', model.newTypeRef(Void.TYPE)) [
-			parameters += model.toParameter("event", model.newTypeRef(Enum, wildCardExtends(model.newTypeRef(Object))))
+		type.members += model.toMethod('trigger', void.typeRef) [
+			parameters += model.toParameter("event", Enum.typeRef(Object.typeRef.wildcardExtends))
 			visibility = JvmVisibility.PROTECTED
 			body = '''
 				«System».out.printf(localize("received_signal"), event.getClass().getSimpleName(), event);
@@ -174,7 +175,7 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	 * input and the dispatching of the simulated events. Thereby it complements the time based events.
 	 */
 	def initializeRuleEngine(JvmGenericType type, Model model, Iterable<? extends Rule> stateRules, Iterable<? extends Rule> timeRules) {
-		type.members += model.toMethod("run", model.newTypeRef(Void.TYPE)) [
+		type.members += model.toMethod("run", void.typeRef) [
 			body = '''
 				«IF !timeRules.empty»
 					«Simulator» simulator = new «Simulator»(localize("set_time"));
@@ -226,9 +227,10 @@ class RulesJvmModelInferrer extends AbstractModelInferrer {
 	 * Create a java main method that will call the {@code run()} function of this class.
 	 */
 	def initializeMain(JvmGenericType type, Model model) {
-		type.members += model.toMethod('main', model.newTypeRef(Void.TYPE)) [
-			parameters += model.toParameter("args", model.newTypeRef(String).addArrayTypeDimension)
+		type.members += model.toMethod('main', void.typeRef) [
+			parameters += model.toParameter("args", String.typeRef.addArrayTypeDimension)
 			static = true
+			varArgs = true
 			body = '''
 				new «type.simpleName»().run();
 			'''

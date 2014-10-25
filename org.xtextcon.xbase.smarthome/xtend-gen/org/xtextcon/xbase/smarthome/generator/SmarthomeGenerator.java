@@ -25,7 +25,7 @@ public class SmarthomeGenerator extends JvmModelGenerator {
     String _plus = ("my/home/is/my/castle/" + _firstUpper);
     final String resourceName = (_plus + "RuleEngine.properties");
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("current_time = Current time \'%tR\'.\\\\n");
+    _builder.append("current_time = Current time \'%tR\'.\\n");
     _builder.newLine();
     _builder.append("received_signal = Received signal \'%s %s\'.\\n");
     _builder.newLine();

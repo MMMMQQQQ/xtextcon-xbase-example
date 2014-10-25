@@ -4,7 +4,7 @@
     editorDirectory="/org.xtextcon.xbase.smarthome.editor/src" modelPluginID="org.xtextcon.xbase.smarthome"
     forceOverwrite="true" modelName="Rules" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtextcon.xbase.smarthome.edit"
-    editorPluginID="org.xtextcon.xbase.smarthome.editor" runtimeVersion="2.9" usedGenPackages="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase">
+    editorPluginID="org.xtextcon.xbase.smarthome.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase">
   <genPackages prefix="Rules" basePackage="org.xtextcon.xbase.smarthome" disposableProviderFactory="true"
       fileExtensions="rules" ecorePackage="Rules.ecore#/">
     <genClasses ecoreClass="Rules.ecore#//Model">

@@ -2,29 +2,17 @@ package org.xtextcon.xbase.smarthome.lib;
 
 import com.google.common.util.concurrent.RateLimiter;
 import java.util.Calendar;
+import org.eclipse.xtend.lib.Property;
+import org.eclipse.xtext.xbase.lib.Pure;
 import org.xtextcon.xbase.smarthome.lib.TimeDependent;
 
 @SuppressWarnings("all")
 public class Simulator {
+  @Property
   private Calendar _calendar;
   
-  public Calendar getCalendar() {
-    return this._calendar;
-  }
-  
-  public void setCalendar(final Calendar calendar) {
-    this._calendar = calendar;
-  }
-  
+  @Property
   private String _message;
-  
-  public String getMessage() {
-    return this._message;
-  }
-  
-  public void setMessage(final String message) {
-    this._message = message;
-  }
   
   public Simulator(final String message) {
     this.setMessage(message);
@@ -35,7 +23,7 @@ public class Simulator {
   }
   
   public void setTime(final int hour, final int min) {
-    this.getCalendar();
+    /* this.getCalendar(); */
     synchronized (this.getCalendar()) {
       {
         Calendar _calendar = this.getCalendar();
@@ -54,7 +42,7 @@ public class Simulator {
       public void run() {
         final Runnable runnable = new Runnable() {
           public void run() {
-            Simulator.this.getCalendar();
+            /* Simulator.this.getCalendar(); */
             synchronized (Simulator.this.getCalendar()) {
               {
                 Calendar _calendar = Simulator.this.getCalendar();
@@ -66,17 +54,33 @@ public class Simulator {
           }
         };
         final RateLimiter rateLimiter = RateLimiter.create(1.0);
-        boolean _while = true;
-        while (_while) {
+        while (true) {
           {
             rateLimiter.acquire();
             runnable.run();
           }
-          _while = true;
         }
       }
     };
     Thread _thread = new Thread(_function);
     _thread.start();
+  }
+  
+  @Pure
+  public Calendar getCalendar() {
+    return this._calendar;
+  }
+  
+  public void setCalendar(final Calendar calendar) {
+    this._calendar = calendar;
+  }
+  
+  @Pure
+  public String getMessage() {
+    return this._message;
+  }
+  
+  public void setMessage(final String message) {
+    this._message = message;
   }
 }

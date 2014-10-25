@@ -12,7 +12,7 @@ class SmarthomeGenerator extends JvmModelGenerator {
 	def dispatch void internalDoGenerate(Model model, IFileSystemAccess fsa) {
 		val resourceName = "my/home/is/my/castle/" + model.eResource.URI.trimFileExtension.lastSegment.toFirstUpper+"RuleEngine.properties"
 		fsa.generateFile(resourceName, '''
-			current_time = Current time '%tR'.\\n
+			current_time = Current time '%tR'.\n
 			received_signal = Received signal '%s %s'.\n
 			simulator_started = Simulator started. These commands are available:
 			waiting = Waiting for input...
